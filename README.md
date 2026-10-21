@@ -4,6 +4,55 @@ A local Mac workspace for all 13 apps on [ArtCraft’s app page](https://getartc
 
 **Open `ARTsie.app` or double-click `Start ARTsie.command`.** The hub launches the editors, manages a shared workspace, and exposes the installed apps’ actual tool schemas. It runs at `http://127.0.0.1:8743` on this Mac.
 
+## Install on a new Mac
+
+This repository holds ARTsie's own code. The upstream apps are downloaded during setup, so a clone is about 2 MB rather than 6.5 GB.
+
+### Prerequisites
+
+| Need | Version | Install |
+| --- | --- | --- |
+| macOS | Apple silicon or Intel (the apps are macOS universal builds) | |
+| Python | 3.12 or newer (tested on 3.14.8) | `brew install python@3.14` |
+| Node.js | 24.10 or newer (tested on 26.4.0) | `brew install node` |
+| Disk | About 7 GB free | |
+| Network | github.com, for the ArtCraft releases | |
+
+### Setup
+
+```sh
+git clone https://github.com/faheemdehalvi/artsie.git ARTsie
+cd ARTsie
+./setup.sh
+```
+
+`setup.sh` runs these four steps. You can also run them by hand:
+
+```sh
+# Python: nothing to install. requirements.txt lists no packages because ARTsie uses only the standard library.
+cd cli && npm ci --ignore-scripts --no-audit --no-fund && cd ..   # CLI dependencies (incur, @cfworker/json-schema)
+python3 scripts/install_suite.py                # the 13 apps, their CLIs and source snapshots
+python3 scripts/install_cli.py                  # puts `artsie` in ~/.local/bin
+```
+
+If `npm ci` complains about the lockfile, use `npm install` in `cli/`. For development, `npm install` also adds the TypeScript tooling, `npm run typecheck` checks types and `npm test` runs the CLI tests.
+
+### What setup recreates
+
+These folders are not in the repository. Setup rebuilds them:
+
+| Folder | Size | Made by |
+| --- | --- | --- |
+| `downloads/` | about 2 GB | `install_suite.py` fetches each app's macOS installer and CLI archive. It uses the committed `release.json` and checks every file against the committed `SHA256SUMS.txt`, so you get the same pinned versions. |
+| `Applications/` | about 2.2 GB | `install_suite.py` copies each app out of its installer and verifies the vendor code signature. |
+| `tools/` and `bin/*-cli` | about 1.6 GB | `install_suite.py` unpacks each app's CLI and links it into `bin/`. |
+| `sources/` | about 355 MB | `install_suite.py` downloads the source archive for the same release tag from github.com/storytold. |
+| `cli/node_modules/` | | `npm ci` |
+| `workspace/Inbox`, `Projects`, `Exports` | empty | `install_suite.py` creates them. Your own files live here and never go into git. |
+| `logs/` and `data/photocraft-control-token` | | ARTsie creates them on first run. The token is a per-machine secret, so it is never committed. |
+
+To move to newer ArtCraft releases, delete `downloads/<app>/release.json` and run `install_suite.py` again.
+
 ## What is here
 
 | Location | Contents |
@@ -111,7 +160,7 @@ Nine headless native servers support automation roots, enabled here for `workspa
 
 Read the relevant `sources/<app>/AGENTS.md` and README before changing upstream source. Snapshots include source and licenses, but are not Git checkouts. The installed apps are the official prebuilt releases; modified source has not been compiled. Rust is needed to build your own native editor and is not installed by this setup. Upstream source can have optional build inputs such as fonts; follow its build documentation.
 
-The hub uses Python 3.11+ with no pip dependencies, plus an AppKit/WebKit shell compiled using Swift. Rebuild its shell after changing `scripts/ARTsie.swift`:
+The hub uses Python 3.12+ with no pip dependencies, plus an AppKit/WebKit shell compiled using Swift. Rebuild its shell after changing `scripts/ARTsie.swift`:
 
 ```sh
 python3 scripts/build_hub.py

@@ -1,0 +1,9 @@
+# ARTsie needs no third-party Python packages: artsie.py, cli/bridge.py and
+# scripts/*.py use only the standard library.
+#
+# Requirement: Python 3.12 or newer (scripts/install_suite.py uses
+# Path.relative_to(walk_up=True)). Tested on Python 3.14.8.
+#
+# There is nothing to pip install. Homebrew Python refuses system-wide installs
+# (PEP 668), so if a tool insists on installing this file, use a venv:
+#   python3 -m venv .venv && .venv/bin/pip install -r requirements.txt
