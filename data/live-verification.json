@@ -1,0 +1,28 @@
+[
+  {
+    "app": "photocraft",
+    "live_tools": 25,
+    "inspection": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"activeLayer\":2,\"canRedo\":false,\"canUndo\":false,\"channels\":{\"alpha\":[],\"colors\":[{\"name\":\"Red\",\"visible\":true},{\"name\":\"Green\",\"visible\":true},{\"name\":\"Blue\",\"visible\":true}],\"composite\":\"RGB\",\"compositeVisible\":true,\"layerMaskView\":null,\"quickMask\":null,\"target\":{\"kind\":\"composite\"}},\"depth\":8,\"hasSelection\":false,\"height\":90,\"history\":[\"Open\"],\"isolatedLayers\":[],\"lastAppliedComp\":null,\"layerComps\":[],\"layerMaskView\":null,\"layers\":[{\"blend\":\"Normal\",\"bounds\":[0,0,160,90],\"clipped\":false,\"fill\":1.0,\"hasMask\":false,\"hasVectorMask\":false,\"id\":2,\"kind\":\"Pixel\",\"labelColor\":\"none\",\"linkGroup\":null,\"name\":\"Background\",\"opacity\":1.0,\"selected\":true,\"vectorMaskEnabled\":null,\"visible\":true}],\"measurement\":{\"count\":0,\"countGroups\":0,\"ruler\":null,\"scale\":\"1 pixels = 1.0000 pixels\"},\"mode\":\"Rgb\",\"name\":\"ARTsie-test-inverted.png\",\"notes\":[],\"path\":\"/Users/faheemdehalvi/Desktop/faheems crazy conspiracy theories/Heem's Brain/ARTsie/workspace/Exports/ARTsie-test-inverted.png\",\"quickMask\":false,\"resolution\":72.0,\"revision\":1,\"selectedLayers\":[2],\"selectionBounds\":null,\"snapshots\":[],\"symmetry\":null,\"timeline\":null,\"variables\":null,\"width\":160}"
+        }
+      ],
+      "isError": false
+    }
+  },
+  {
+    "app": "filmcraft",
+    "live_tools": 17,
+    "inspection": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\n  \"activeSequence\": 21,\n  \"dirty\": false,\n  \"name\": \"FilmCraft Demo\",\n  \"path\": null,\n  \"revision\": 2,\n  \"root\": {\n    \"children\": [\n      {\n        \"children\": [\n          {\n            \"duration\": 4572288000000,\n            \"item\": 5,\n            \"label\": \"Iris\",\n            \"name\": \"Ocean_Sunset.mp4\",\n            \"type\": \"Movie\"\n          },\n          {\n            \"duration\": 4064256000000,\n            \"item\": 6,\n            \"label\": \"Iris\",\n            \"name\": \"Aurora_Timelapse.mp4\",\n            \"type\": \"Movie\"\n          },\n          {\n            \"duration\": 3556224000000,\n            \"item\": 7,\n            \"label\": \"Iris\",\n            \"name\": \"City_Night_Drive.mp4\",\n            \"type\": \"Movie\"\n          },\n          {\n            \"duration\": 3810240000000,\n            \"item\": 8,\n            \"label\": \"Iris\",\n            \"name\": \"Desert_Dunes.mp4\",\n            \"type\": \"Movie\"\n          },\n          {\n            \"duration\": 3048192000000,\n            \"item\": 9,\n            \"label\": \"Iris\",\n            \"name\": \"Misty_Forest.mp4\",\n            \"type\": \"Movie\"\n          },\n          {\n            \"duration\": 2540160000000,\n            \"item\": 10,\n            \"label\": \"Iris\",\n            \"name\": \"Neon_Loop.mov\",\n            \"type\": \"Movie\"\n          }\n        ],\n        \"id\": 1,\n        \"name\": \"Footage\"\n      },\n      {\n        \"children\": [\n          {\n            \"duration\": 15240960000000,\n            \"item\": 11,\n            \"label\": \"Caribbean\",\n            \"name\": \"Ambient_Score.wav\",\n            \"type\": \"Audio\"\n          }\n        ],\n        \"id\": 2,\n        \"name\": \"Audio\"\n      },\n      {\n        \"children\": [\n          {\n            \"duration\": 2540160000000,\n            \"item\": 12,\n            \"label\": \"Lavender\",\n            \"name\": \"Bars and Tone\",\n            \"type\": \"Synthetic\"\n          },\n          {\n            \"duration\": 2032128000000,\n            \"item\": 13,\n            \"label\": \"Lavender\",\n            \"name\": \"Universal Counting Leader\",\n            \"type\": \"Synthetic\"\n          },\n          {\n            \"duration\": 1270080000000,\n            \"item\": 14,\n            \"label\": \"Lavender\",\n            \"name\": \"Color Matte\",\n            \"type\": \"Synthetic\"\n          }\n        ],\n        \"id\": 3,\n        \"name\": \"Graphics\"\n      },\n      {\n        \"children\": [\n          {\n            \"duration\": 6801722928000,\n            \"item\": 21,\n            \"label\": \"Forest\",\n            \"name\": \"Main Edit\",\n            \"type\": \"Sequence\"\n          },\n          {\n            \"duration\": 0,\n            \"item\": 27,\n            \"label\": \"Forest\",\n            \"name\": \"Rough Cut\",\n            \"type\": \"Sequence\"\n          }\n        ],\n        \"id\": 4,\n        \"name\": \"Sequences\"\n      }\n    ],\n    \"id\": 0,\n    \"name\": \"FilmCraft Demo\"\n  },\n  \"sourceItem\": null\n}"
+        }
+      ],
+      "isError": false
+    }
+  }
+]

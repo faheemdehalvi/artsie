@@ -1,0 +1,337 @@
+{
+  "fetched_at": "2026-10-18T05:03:59.373494+00:00",
+  "source": "https://getartcraft.com/apps",
+  "apps": [
+    {
+      "id": "photocraft",
+      "name": "PhotoCraft",
+      "category": "Image editing",
+      "monogram": "Pc",
+      "color": "#9ba8ff",
+      "version": "v0.10.0",
+      "release": "https://github.com/storytold/photocraft/releases/tag/v0.10.0",
+      "assets": [
+        {
+          "name": "photocraft-0.10.0-macos-universal.dmg",
+          "sha256": "2f2e21a0119e8e63b2b2f93d238817b3727af88720ab9e2b6deb1458927a3b1f",
+          "url": "https://github.com/storytold/photocraft/releases/download/v0.10.0/photocraft-0.10.0-macos-universal.dmg"
+        },
+        {
+          "name": "photocraft-cli-0.10.0-macos-universal.zip",
+          "sha256": "57b2bfa6514beb9f85177fbb6832f8aa3aebee08561d78d54a3182c404220927",
+          "url": "https://github.com/storytold/photocraft/releases/download/v0.10.0/photocraft-cli-0.10.0-macos-universal.zip"
+        }
+      ],
+      "source": "sources/photocraft",
+      "bundle": "Applications/PhotoCraft.app",
+      "executable": "Applications/PhotoCraft.app/Contents/MacOS/PhotoCraft"
+    },
+    {
+      "id": "vectorcraft",
+      "name": "VectorCraft",
+      "category": "Vector illustration",
+      "monogram": "Vc",
+      "color": "#ffa780",
+      "version": "v0.13.1",
+      "release": "https://github.com/storytold/vectorcraft/releases/tag/v0.13.1",
+      "assets": [
+        {
+          "name": "vectorcraft-0.13.1-macos-universal.dmg",
+          "sha256": "b932c38927a007f30218c4ed404a5c48a3f41674d6e4c560a662c7ffdbdb706f",
+          "url": "https://github.com/storytold/vectorcraft/releases/download/v0.13.1/vectorcraft-0.13.1-macos-universal.dmg"
+        },
+        {
+          "name": "vectorcraft-cli-0.13.1-macos-universal.zip",
+          "sha256": "fc2c1f0163a7de37904556ee1c56d726d9ee738accd3c9dfc2f913d6ae2459fc",
+          "url": "https://github.com/storytold/vectorcraft/releases/download/v0.13.1/vectorcraft-cli-0.13.1-macos-universal.zip"
+        }
+      ],
+      "source": "sources/vectorcraft",
+      "bundle": "Applications/VectorCraft.app",
+      "executable": "Applications/VectorCraft.app/Contents/MacOS/VectorCraft"
+    },
+    {
+      "id": "filmcraft",
+      "name": "FilmCraft",
+      "category": "Video editing",
+      "monogram": "Fc",
+      "color": "#c9a1ff",
+      "version": "v0.9.0",
+      "release": "https://github.com/storytold/filmcraft/releases/tag/v0.9.0",
+      "assets": [
+        {
+          "name": "filmcraft-0.9.0-macos-universal.dmg",
+          "sha256": "d654a23bbd039561a69bc5530203769040ca4961e228245abb843752526d2124",
+          "url": "https://github.com/storytold/filmcraft/releases/download/v0.9.0/filmcraft-0.9.0-macos-universal.dmg"
+        },
+        {
+          "name": "filmcraft-cli-0.9.0-macos-universal.zip",
+          "sha256": "793754cf8c9faa2a2272c5462533fac94d71d07a9abfb9fa29d286fd7cd70d0b",
+          "url": "https://github.com/storytold/filmcraft/releases/download/v0.9.0/filmcraft-cli-0.9.0-macos-universal.zip"
+        }
+      ],
+      "source": "sources/filmcraft",
+      "bundle": "Applications/FilmCraft.app",
+      "executable": "Applications/FilmCraft.app/Contents/MacOS/FilmCraft"
+    },
+    {
+      "id": "lightcraft",
+      "name": "LightCraft",
+      "category": "Photography & RAW",
+      "monogram": "Lc",
+      "color": "#ffcf7c",
+      "version": "v0.9.1",
+      "release": "https://github.com/storytold/lightcraft/releases/tag/v0.9.1",
+      "assets": [
+        {
+          "name": "lightcraft-0.9.1-macos-universal.dmg",
+          "sha256": "5e3fde7755d0fd0fa91114fc58ef51093a81b6177dcd9aece0142b4ec10e1c5a",
+          "url": "https://github.com/storytold/lightcraft/releases/download/v0.9.1/lightcraft-0.9.1-macos-universal.dmg"
+        },
+        {
+          "name": "lightcraft-cli-0.9.1-macos-universal.zip",
+          "sha256": "d2b6e60050f0266193162779676a4194f5ffc4ec5fd9f9e818f8ec66b2e70c8c",
+          "url": "https://github.com/storytold/lightcraft/releases/download/v0.9.1/lightcraft-cli-0.9.1-macos-universal.zip"
+        }
+      ],
+      "source": "sources/lightcraft",
+      "bundle": "Applications/LightCraft.app",
+      "executable": "Applications/LightCraft.app/Contents/MacOS/LightCraft"
+    },
+    {
+      "id": "pdfcraft",
+      "name": "PdfCraft",
+      "category": "PDF workbench",
+      "monogram": "Pd",
+      "color": "#ff8e9f",
+      "version": "v0.9.0",
+      "release": "https://github.com/storytold/pdfcraft/releases/tag/v0.9.0",
+      "assets": [
+        {
+          "name": "pdfcraft-0.9.0-macos-universal.dmg",
+          "sha256": "116738045a68463eb1a465e6eaef2266902aac69aa1a15e4a1c1472c31d8abe9",
+          "url": "https://github.com/storytold/pdfcraft/releases/download/v0.9.0/pdfcraft-0.9.0-macos-universal.dmg"
+        },
+        {
+          "name": "pdfcraft-cli-0.9.0-macos-universal.zip",
+          "sha256": "c20b8ced630417d47042ee37282fdb8362a29ebbc0b0bec3f4f635d0e28545f0",
+          "url": "https://github.com/storytold/pdfcraft/releases/download/v0.9.0/pdfcraft-cli-0.9.0-macos-universal.zip"
+        }
+      ],
+      "source": "sources/pdfcraft",
+      "bundle": "Applications/PdfCraft.app",
+      "executable": "Applications/PdfCraft.app/Contents/MacOS/PdfCraft"
+    },
+    {
+      "id": "effectcraft",
+      "name": "EffectCraft",
+      "category": "Motion & visual effects",
+      "monogram": "Ec",
+      "color": "#d5a0fb",
+      "version": "v0.11.1",
+      "release": "https://github.com/storytold/effectcraft/releases/tag/v0.11.1",
+      "assets": [
+        {
+          "name": "effectcraft-0.11.1-macos-universal.dmg",
+          "sha256": "73471a98b510596bcca96c6c055665b36ebcf619d3937c3e246d5249ad046cf4",
+          "url": "https://github.com/storytold/effectcraft/releases/download/v0.11.1/effectcraft-0.11.1-macos-universal.dmg"
+        },
+        {
+          "name": "effectcraft-cli-0.11.1-macos-universal.zip",
+          "sha256": "8eae2e1e9c13e03d1bc2460501a90d43fc570b37e9b386294c0720eb12aad0f0",
+          "url": "https://github.com/storytold/effectcraft/releases/download/v0.11.1/effectcraft-cli-0.11.1-macos-universal.zip"
+        }
+      ],
+      "source": "sources/effectcraft",
+      "bundle": "Applications/EffectCraft.app",
+      "executable": "Applications/EffectCraft.app/Contents/MacOS/EffectCraft"
+    },
+    {
+      "id": "designcraft",
+      "name": "DesignCraft",
+      "category": "Page layout & publishing",
+      "monogram": "Dc",
+      "color": "#f6a9cf",
+      "version": "v0.9.0",
+      "release": "https://github.com/storytold/designcraft/releases/tag/v0.9.0",
+      "assets": [
+        {
+          "name": "designcraft-0.9.0-macos-universal.dmg",
+          "sha256": "7fe7578040fb1b340b063d513b62cf7e53335274453327b287998221bb52768e",
+          "url": "https://github.com/storytold/designcraft/releases/download/v0.9.0/designcraft-0.9.0-macos-universal.dmg"
+        },
+        {
+          "name": "designcraft-cli-0.9.0-macos-universal.zip",
+          "sha256": "1c11a863755b9eb38209c8521bd46c42888260179f016a125b3ba5d293c0cb84",
+          "url": "https://github.com/storytold/designcraft/releases/download/v0.9.0/designcraft-cli-0.9.0-macos-universal.zip"
+        }
+      ],
+      "source": "sources/designcraft",
+      "bundle": "Applications/DesignCraft.app",
+      "executable": "Applications/DesignCraft.app/Contents/MacOS/DesignCraft"
+    },
+    {
+      "id": "figcraft",
+      "name": "FigCraft",
+      "category": "Interface design",
+      "monogram": "Fg",
+      "color": "#a1d9cb",
+      "version": "v0.7.0",
+      "release": "https://github.com/storytold/figcraft/releases/tag/v0.7.0",
+      "assets": [
+        {
+          "name": "figcraft-0.7.0-macos-universal.dmg",
+          "sha256": "161283ed574f078ee2a2249c3d07e059bc88e4881c2e08217b57df1eed60225d",
+          "url": "https://github.com/storytold/figcraft/releases/download/v0.7.0/figcraft-0.7.0-macos-universal.dmg"
+        },
+        {
+          "name": "figcraft-cli-0.7.0-macos-universal.zip",
+          "sha256": "5e7bea01c9f33d13d2ad803dfd10b5f0b1815e124870db09391d1c360a58e893",
+          "url": "https://github.com/storytold/figcraft/releases/download/v0.7.0/figcraft-cli-0.7.0-macos-universal.zip"
+        }
+      ],
+      "source": "sources/figcraft",
+      "bundle": "Applications/FigCraft.app",
+      "executable": "Applications/FigCraft.app/Contents/MacOS/FigCraft"
+    },
+    {
+      "id": "wordcraft",
+      "name": "WordCraft",
+      "category": "Documents",
+      "monogram": "Wc",
+      "color": "#9fc9ff",
+      "version": "v0.8.0",
+      "release": "https://github.com/storytold/wordcraft/releases/tag/v0.8.0",
+      "assets": [
+        {
+          "name": "wordcraft-0.8.0-macos-universal.dmg",
+          "sha256": "9c7c058e4bc0ea3dd4e7f350e934b5e5ff5798723937f382c77478a6978f89e3",
+          "url": "https://github.com/storytold/wordcraft/releases/download/v0.8.0/wordcraft-0.8.0-macos-universal.dmg"
+        },
+        {
+          "name": "wordcraft-cli-0.8.0-macos-universal.zip",
+          "sha256": "931f2277a357e7d77266ddceea565450b102ca7bf9e0634821162f7bab616dbe",
+          "url": "https://github.com/storytold/wordcraft/releases/download/v0.8.0/wordcraft-cli-0.8.0-macos-universal.zip"
+        }
+      ],
+      "source": "sources/wordcraft",
+      "bundle": "Applications/WordCraft.app",
+      "executable": "Applications/WordCraft.app/Contents/MacOS/WordCraft"
+    },
+    {
+      "id": "soundcraft",
+      "name": "SoundCraft",
+      "category": "Audio recording & mixing",
+      "monogram": "Sc",
+      "color": "#aad58d",
+      "version": "v0.8.0",
+      "release": "https://github.com/storytold/soundcraft/releases/tag/v0.8.0",
+      "assets": [
+        {
+          "name": "soundcraft-0.8.0-macos-universal.dmg",
+          "sha256": "4221c313d25abc1aaca51d1495a19735b5e3c240a6820c566779c6e0b4c35320",
+          "url": "https://github.com/storytold/soundcraft/releases/download/v0.8.0/soundcraft-0.8.0-macos-universal.dmg"
+        },
+        {
+          "name": "soundcraft-cli-0.8.0-macos-universal.zip",
+          "sha256": "41852f04159d64d62054a9d89b35fd9177eecdfdb53b5c8b52887d31dc4cef71",
+          "url": "https://github.com/storytold/soundcraft/releases/download/v0.8.0/soundcraft-cli-0.8.0-macos-universal.zip"
+        }
+      ],
+      "source": "sources/soundcraft",
+      "bundle": "Applications/SoundCraft.app",
+      "executable": "Applications/SoundCraft.app/Contents/MacOS/SoundCraft"
+    },
+    {
+      "id": "deckcraft",
+      "name": "DeckCraft",
+      "category": "Presentations",
+      "monogram": "Dc",
+      "color": "#f2bc8f",
+      "version": "v0.8.0",
+      "release": "https://github.com/storytold/deckcraft/releases/tag/v0.8.0",
+      "assets": [
+        {
+          "name": "deckcraft-0.8.0-macos-universal.dmg",
+          "sha256": "81ee3158cbb550951faf89888bf7f0ea296fc233593aecfc3f41c7d9dce88542",
+          "url": "https://github.com/storytold/deckcraft/releases/download/v0.8.0/deckcraft-0.8.0-macos-universal.dmg"
+        },
+        {
+          "name": "deckcraft-cli-0.8.0-macos-universal.zip",
+          "sha256": "1093646863b659c0a40d919cb898d9d7c7a4710e488b4207540d17887e187ed0",
+          "url": "https://github.com/storytold/deckcraft/releases/download/v0.8.0/deckcraft-cli-0.8.0-macos-universal.zip"
+        }
+      ],
+      "source": "sources/deckcraft",
+      "bundle": "Applications/DeckCraft.app",
+      "executable": "Applications/DeckCraft.app/Contents/MacOS/DeckCraft"
+    },
+    {
+      "id": "cadcraft",
+      "name": "CADCraft",
+      "category": "CAD & drafting",
+      "monogram": "Cc",
+      "color": "#8fd7e5",
+      "version": "v0.8.0",
+      "release": "https://github.com/storytold/cadcraft/releases/tag/v0.8.0",
+      "assets": [
+        {
+          "name": "cadcraft-0.8.0-macos-universal.dmg",
+          "sha256": "518c8f38df85112ae37b62778d6b4b4d3e85dbf922cac5737d4765d508b77ee1",
+          "url": "https://github.com/storytold/cadcraft/releases/download/v0.8.0/cadcraft-0.8.0-macos-universal.dmg"
+        },
+        {
+          "name": "cadcraft-cli-0.8.0-macos-universal.zip",
+          "sha256": "0647286d06e2bf5da9fd1303f481966962ad224b57b4fa7adf2087a1e387e30b",
+          "url": "https://github.com/storytold/cadcraft/releases/download/v0.8.0/cadcraft-cli-0.8.0-macos-universal.zip"
+        }
+      ],
+      "source": "sources/cadcraft",
+      "bundle": "Applications/CADCraft.app",
+      "executable": "Applications/CADCraft.app/Contents/MacOS/CADCraft"
+    },
+    {
+      "id": "gridcraft",
+      "name": "GridCraft",
+      "category": "Spreadsheets & data",
+      "monogram": "Gc",
+      "color": "#a0d6aa",
+      "version": "v0.8.0",
+      "release": "https://github.com/storytold/gridcraft/releases/tag/v0.8.0",
+      "assets": [
+        {
+          "name": "gridcraft-0.8.0-macos-universal.dmg",
+          "sha256": "260622fc0e0b18cc88162f0c2294759b58f8a32efa43ca6bf569e8b48aee2a23",
+          "url": "https://github.com/storytold/gridcraft/releases/download/v0.8.0/gridcraft-0.8.0-macos-universal.dmg"
+        },
+        {
+          "name": "gridcraft-cli-0.8.0-macos-universal.zip",
+          "sha256": "564f7d087b880b7f16aa60ae50a1cbe9d37b4ed449eb29b2646ea584479bab07",
+          "url": "https://github.com/storytold/gridcraft/releases/download/v0.8.0/gridcraft-cli-0.8.0-macos-universal.zip"
+        }
+      ],
+      "source": "sources/gridcraft",
+      "bundle": "Applications/GridCraft.app",
+      "executable": "Applications/GridCraft.app/Contents/MacOS/GridCraft"
+    },
+    {
+      "id": "craft-launcher",
+      "name": "ArtCraft Launcher",
+      "category": "Official release manager",
+      "monogram": "Ac",
+      "color": "#e3e5ed",
+      "version": "v0.5.1",
+      "release": "https://github.com/storytold/craft-launcher/releases/tag/v0.5.1",
+      "assets": [
+        {
+          "name": "artcraft-launcher-0.5.1-macos-universal.dmg",
+          "sha256": "84f7b95acc229d9a997f91c3d110cd36131edde21f47f4a21c0f17d2ad3ca436",
+          "url": "https://github.com/storytold/craft-launcher/releases/download/v0.5.1/artcraft-launcher-0.5.1-macos-universal.dmg"
+        }
+      ],
+      "source": "sources/craft-launcher",
+      "bundle": "Applications/ArtCraft Launcher.app",
+      "executable": "Applications/ArtCraft Launcher.app/Contents/MacOS/ArtCraft Launcher"
+    }
+  ]
+}

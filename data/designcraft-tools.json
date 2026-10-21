@@ -1,0 +1,950 @@
+{
+  "tools": [
+    {
+      "annotations": {
+        "openWorldHint": false,
+        "readOnlyHint": true,
+        "title": "List commands"
+      },
+      "description": "List DesignCraft commands: id, label, menu path, shortcut, parameter description and whether it can run right now. Every user-visible action is a command (frame.create, text.insert, type.char, style.paragraph.apply, layout.pages.insert, object.fill, transform.move, edit.undo\u2026); run them with execute or batch.",
+      "inputSchema": {
+        "properties": {
+          "enabledOnly": {
+            "description": "Only commands that can run right now",
+            "type": "boolean"
+          },
+          "filter": {
+            "description": "Case-insensitive substring matched against id, label and menu path (e.g. \"frame\", \"style\", \"Layout\")",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "name": "list_commands",
+      "title": "List commands"
+    },
+    {
+      "annotations": {
+        "openWorldHint": false,
+        "readOnlyHint": false,
+        "title": "Execute command"
+      },
+      "description": "Run any DesignCraft command by id with JSON params (ids and params from list_commands). Examples: {\"command\":\"frame.create\",\"params\":{\"rect\":[36,36,576,300],\"content\":\"text\",\"text\":\"Hello\"}} \u2192 {id, story}; {\"command\":\"type.char\",\"params\":{\"size\":24}}; {\"command\":\"edit.undo\"}. Coordinates are points in spread space. In the desktop app the UI-only commands (view.*, window.*, help.*, edit.dynamicSpelling, and app.* except app.links, which works everywhere) work too.",
+      "inputSchema": {
+        "properties": {
+          "command": {
+            "description": "Command id, e.g. frame.create",
+            "type": "string"
+          },
+          "params": {
+            "description": "Command parameters (see the `params` field of list_commands)",
+            "type": "object"
+          }
+        },
+        "required": [
+          "command"
+        ],
+        "type": "object"
+      },
+      "name": "execute",
+      "title": "Execute command"
+    },
+    {
+      "annotations": {
+        "openWorldHint": false,
+        "readOnlyHint": false,
+        "title": "Execute commands"
+      },
+      "description": "Run several commands in order, stopping at the first error. Returns each result; on failure also the failing index and message (earlier commands stay applied; use edit.undo to revert them). Later steps can use earlier results: a parameter string \"$N.path\" is replaced by that value of step N's result (0-based; \"$last.path\" for the previous step), e.g. after frame.create \u2192 {\"id\": 8, \"story\": 9}, {\"story\": \"$0.story\"} passes 9; \"${N.path}\" interpolates into longer strings. Other strings starting with $ stay as written; \"$$\" is a literal $ (\"$$1\" passes the GREP group $1). Give `commands`, or `script` text (one `command.id {json}` per line).",
+      "inputSchema": {
+        "properties": {
+          "commands": {
+            "description": "Commands to run in order",
+            "items": {
+              "properties": {
+                "command": {
+                  "description": "Command id",
+                  "type": "string"
+                },
+                "params": {
+                  "description": "Command parameters (see the `params` field of list_commands)",
+                  "type": "object"
+                }
+              },
+              "required": [
+                "command"
+              ],
+              "type": "object"
+            },
+            "minItems": 1,
+            "type": "array"
+          },
+          "script": {
+            "description": "Alternative to `commands`: lines of `command.id {json params}` (# comments allowed)",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "name": "batch",
+      "title": "Execute commands"
+    },
+    {
+      "annotations": {
+        "openWorldHint": false,
+        "readOnlyHint": true,
+        "title": "Inspect document"
+      },
+      "description": "Summary of the active document: settings, pages (index, name, bounds, margins, columns), spreads with items (id, kind, bounds, fill, stroke, story), stories (id, frames, length in UTF-8 bytes, overset, preview), layers, paragraph/character styles, swatches, selection, active tool.",
+      "inputSchema": {
+        "properties": {},
+        "type": "object"
+      },
+      "name": "inspect_document",
+      "title": "Inspect document"
+    },
+    {
+      "annotations": {
+        "openWorldHint": false,
+        "readOnlyHint": true,
+        "title": "Get story"
+      },
+      "description": "Full text of a story plus its length, frames, paragraph count, line count and overset position (length and positions are UTF-8 byte offsets, the unit text.select takes). Identify it by `story` id or by a text `frame` id (default: the selection).",
+      "inputSchema": {
+        "properties": {
+          "frame": {
+            "description": "Text frame id",
+            "minimum": 0,
+            "type": "integer"
+          },
+          "story": {
+            "description": "Story id",
+            "minimum": 0,
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "name": "get_story",
+      "title": "Get story"
+    },
+    {
+      "annotations": {
+        "openWorldHint": false,
+        "readOnlyHint": false,
+        "title": "Set story text"
+      },
+      "description": "Replace the whole text of a story (keeps the first paragraph's and character's formatting). Use \\n for paragraph breaks. Identify the story by `story` id or by a text `frame` id.",
+      "inputSchema": {
+        "properties": {
+          "frame": {
+            "description": "Text frame id",
+            "minimum": 0,
+            "type": "integer"
+          },
+          "story": {
+            "description": "Story id",
+            "minimum": 0,
+            "type": "integer"
+          },
+          "text": {
+            "description": "New text",
+            "type": "string"
+          }
+        },
+        "required": [
+          "text"
+        ],
+        "type": "object"
+      },
+      "name": "set_story_text",
+      "title": "Set story text"
+    },
+    {
+      "annotations": {
+        "openWorldHint": false,
+        "readOnlyHint": false,
+        "title": "New document"
+      },
+      "description": "Create a new document and make it active. Sizes are in points (72 pt = 1 in). sample:true opens the multi-page magazine sample instead.",
+      "inputSchema": {
+        "properties": {
+          "bleed": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "items": {
+                  "type": "number"
+                },
+                "type": "array"
+              }
+            ],
+            "description": "Bleed on all sides (pt) or [top, bottom, inside, outside]"
+          },
+          "columns": {
+            "description": "Column count",
+            "minimum": 1,
+            "type": "integer"
+          },
+          "facingPages": {
+            "description": "Facing pages (spreads)",
+            "type": "boolean"
+          },
+          "gutter": {
+            "description": "Column gutter (pt)",
+            "type": "number"
+          },
+          "height": {
+            "description": "Page height (pt)",
+            "type": "number"
+          },
+          "intent": {
+            "description": "Document intent",
+            "enum": [
+              "print",
+              "web",
+              "mobile"
+            ],
+            "type": "string"
+          },
+          "margins": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "object"
+              }
+            ],
+            "description": "Uniform margin (pt) or {top, bottom, inside, outside}"
+          },
+          "pages": {
+            "description": "Number of pages",
+            "minimum": 1,
+            "type": "integer"
+          },
+          "preset": {
+            "description": "Page size preset, e.g. \"Letter\", \"A4\", \"Tabloid\"",
+            "type": "string"
+          },
+          "primaryTextFrame": {
+            "description": "Put a primary text frame on the parent page",
+            "type": "boolean"
+          },
+          "sample": {
+            "description": "Open the sample magazine instead",
+            "type": "boolean"
+          },
+          "slug": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "items": {
+                  "type": "number"
+                },
+                "type": "array"
+              }
+            ],
+            "description": "Slug on all sides (pt) or [top, bottom, inside, outside]"
+          },
+          "startPage": {
+            "description": "Number of the first page",
+            "minimum": 1,
+            "type": "integer"
+          },
+          "title": {
+            "description": "Document title",
+            "type": "string"
+          },
+          "units": {
+            "description": "Ruler units, e.g. \"points\", \"picas\", \"millimeters\"",
+            "type": "string"
+          },
+          "width": {
+            "description": "Page width (pt)",
+            "type": "number"
+          }
+        },
+        "type": "object"
+      },
+      "name": "new_document",
+      "title": "New document"
+    },
+    {
+      "annotations": {
+        "openWorldHint": false,
+        "readOnlyHint": false,
+        "title": "Open document"
+      },
+      "description": "Open a .designcraft file as a new, active document.",
+      "inputSchema": {
+        "properties": {
+          "path": {
+            "description": "File path",
+            "type": "string"
+          }
+        },
+        "required": [
+          "path"
+        ],
+        "type": "object"
+      },
+      "name": "open_document",
+      "title": "Open document"
+    },
+    {
+      "annotations": {
+        "openWorldHint": false,
+        "readOnlyHint": false,
+        "title": "Save document"
+      },
+      "description": "Save the active document in the native .designcraft format.",
+      "inputSchema": {
+        "properties": {
+          "path": {
+            "description": "Destination (default: the document's current path)",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "name": "save_document",
+      "title": "Save document"
+    },
+    {
+      "annotations": {
+        "openWorldHint": false,
+        "readOnlyHint": false,
+        "title": "Place image"
+      },
+      "description": "Place an image (PNG, JPEG, WebP, GIF, TIFF) from a file `path` or `base64` data. It goes into `frame` (or the selected empty/graphic frame), otherwise into a new frame at x, y (default: the page's top-left margin) with an optional width.",
+      "inputSchema": {
+        "properties": {
+          "base64": {
+            "description": "Image bytes, base64 (alternative to path)",
+            "type": "string"
+          },
+          "frame": {
+            "description": "Frame id to place into",
+            "minimum": 0,
+            "type": "integer"
+          },
+          "name": {
+            "description": "Name for base64 images",
+            "type": "string"
+          },
+          "path": {
+            "description": "Image file path",
+            "type": "string"
+          },
+          "spread": {
+            "description": "Spread index for a new frame (default 0)",
+            "minimum": 0,
+            "type": "integer"
+          },
+          "width": {
+            "description": "Width of the new frame (pt); height follows the aspect ratio",
+            "type": "number"
+          },
+          "x": {
+            "description": "Left of the new frame (spread pt)",
+            "type": "number"
+          },
+          "y": {
+            "description": "Top of the new frame (spread pt)",
+            "type": "number"
+          }
+        },
+        "type": "object"
+      },
+      "name": "place_image",
+      "title": "Place image"
+    },
+    {
+      "annotations": {
+        "openWorldHint": false,
+        "readOnlyHint": false,
+        "title": "Render page"
+      },
+      "description": "Render one page of the active document (printing items only, like Preview) and return it as a PNG image. Optionally also write it to `path`.",
+      "inputSchema": {
+        "properties": {
+          "bleed": {
+            "description": "Include the bleed area",
+            "type": "boolean"
+          },
+          "page": {
+            "description": "Page index, 0-based (default 0; in the desktop app default = the current page)",
+            "minimum": 0,
+            "type": "integer"
+          },
+          "path": {
+            "description": "Also write the PNG here",
+            "type": "string"
+          },
+          "scale": {
+            "description": "Pixels per point (default 1 = 72 ppi)",
+            "type": "number"
+          }
+        },
+        "type": "object"
+      },
+      "name": "render_page",
+      "title": "Render page"
+    },
+    {
+      "annotations": {
+        "openWorldHint": false,
+        "readOnlyHint": false,
+        "title": "Export PNG"
+      },
+      "description": "Export one page as a PNG (or JPEG if the path ends in .jpg) file. Returns the path and pixel size.",
+      "inputSchema": {
+        "properties": {
+          "page": {
+            "description": "Page index, 0-based (default 0; in the desktop app default = the current page)",
+            "minimum": 0,
+            "type": "integer"
+          },
+          "path": {
+            "description": "Destination file",
+            "type": "string"
+          },
+          "scale": {
+            "description": "Pixels per point (default 2)",
+            "type": "number"
+          }
+        },
+        "required": [
+          "path"
+        ],
+        "type": "object"
+      },
+      "name": "export_png",
+      "title": "Export PNG"
+    },
+    {
+      "annotations": {
+        "openWorldHint": false,
+        "readOnlyHint": false,
+        "title": "Screenshot"
+      },
+      "description": "Capture the whole app window (menus, panels, canvas) and return it as a PNG image. Optionally also keep it at `path`. Desktop app only (`designcraft-cli mcp --connect PORT`).",
+      "inputSchema": {
+        "properties": {
+          "path": {
+            "description": "Also write the PNG here",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "name": "screenshot",
+      "title": "Screenshot"
+    },
+    {
+      "annotations": {
+        "openWorldHint": false,
+        "readOnlyHint": false,
+        "title": "Select tool"
+      },
+      "description": "Switch the active tool (as clicking it in the Tools panel). Ids: selection, directSelection, type, rectangleFrame, ellipseFrame, polygonFrame, rectangle, ellipse, polygon, line, hand, zoom, \u2026",
+      "inputSchema": {
+        "properties": {
+          "tool": {
+            "description": "Tool id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "tool"
+        ],
+        "type": "object"
+      },
+      "name": "select_tool",
+      "title": "Select tool"
+    },
+    {
+      "annotations": {
+        "openWorldHint": false,
+        "readOnlyHint": false,
+        "title": "Pointer gesture"
+      },
+      "description": "Drive the active tool with mouse events, exactly like the mouse would. Coordinates are spread points (space \"doc\", default) or, in the desktop app, screen points (space \"screen\"). Example: a text frame with the type tool: {tool:\"type\", events:[{kind:\"down\",x:72,y:72},{kind:\"drag\",x:300,y:200},{kind:\"up\",x:300,y:200}]} leaves a caret in the new frame, ready for type_text. Returns the selection and the active tool.",
+      "inputSchema": {
+        "properties": {
+          "events": {
+            "items": {
+              "properties": {
+                "clicks": {
+                  "description": "On a down: presses in a row it completes (2 double, 3 triple\u2026; default 1)",
+                  "minimum": 1,
+                  "type": "integer"
+                },
+                "kind": {
+                  "enum": [
+                    "down",
+                    "drag",
+                    "up",
+                    "move",
+                    "doubleclick"
+                  ],
+                  "type": "string"
+                },
+                "mods": {
+                  "additionalProperties": false,
+                  "description": "Modifier keys held (cmd = Command on macOS / Ctrl elsewhere; alt = Option)",
+                  "properties": {
+                    "alt": {
+                      "type": "boolean"
+                    },
+                    "cmd": {
+                      "type": "boolean"
+                    },
+                    "ctrl": {
+                      "type": "boolean"
+                    },
+                    "shift": {
+                      "type": "boolean"
+                    }
+                  },
+                  "type": "object"
+                },
+                "space": {
+                  "description": "Coordinate space (default doc)",
+                  "enum": [
+                    "doc",
+                    "screen"
+                  ],
+                  "type": "string"
+                },
+                "x": {
+                  "description": "x (pt)",
+                  "type": "number"
+                },
+                "y": {
+                  "description": "y (pt)",
+                  "type": "number"
+                }
+              },
+              "required": [
+                "kind",
+                "x",
+                "y"
+              ],
+              "type": "object"
+            },
+            "minItems": 1,
+            "type": "array"
+          },
+          "mods": {
+            "additionalProperties": false,
+            "description": "Modifier keys held (cmd = Command on macOS / Ctrl elsewhere; alt = Option)",
+            "properties": {
+              "alt": {
+                "type": "boolean"
+              },
+              "cmd": {
+                "type": "boolean"
+              },
+              "ctrl": {
+                "type": "boolean"
+              },
+              "shift": {
+                "type": "boolean"
+              }
+            },
+            "type": "object"
+          },
+          "tool": {
+            "description": "Optional tool to select before the gesture",
+            "type": "string"
+          }
+        },
+        "required": [
+          "events"
+        ],
+        "type": "object"
+      },
+      "name": "pointer",
+      "title": "Pointer gesture"
+    },
+    {
+      "annotations": {
+        "openWorldHint": false,
+        "readOnlyHint": false,
+        "title": "Press key"
+      },
+      "description": "Press a key with modifiers, e.g. {key:\"Z\", cmd:true} (undo), {key:\"Escape\"}, {key:\"Enter\"}, {key:\"Left\", shift:true}. In the desktop app it goes through the real keyboard path; headless it goes to the active tool (caret keys while typing), then command shortcuts, then tool shortcuts.",
+      "inputSchema": {
+        "properties": {
+          "alt": {
+            "type": "boolean"
+          },
+          "cmd": {
+            "type": "boolean"
+          },
+          "ctrl": {
+            "type": "boolean"
+          },
+          "key": {
+            "description": "Key name: A\u2013Z, 0\u20139, Enter, Escape, Delete, Backspace, Tab, Space, Left/Right/Up/Down, Home, End, [ ] \u2026",
+            "type": "string"
+          },
+          "shift": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "key"
+        ],
+        "type": "object"
+      },
+      "name": "key",
+      "title": "Press key"
+    },
+    {
+      "annotations": {
+        "openWorldHint": false,
+        "readOnlyHint": false,
+        "title": "Type text"
+      },
+      "description": "Type text at the text insertion point, independently of the active tool, or into the focused dialog field in the desktop app. Put a caret first with pointer (tool \"type\") or execute text.placeCaret / text.select.",
+      "inputSchema": {
+        "properties": {
+          "text": {
+            "description": "Text to type (\\n = new paragraph)",
+            "type": "string"
+          }
+        },
+        "required": [
+          "text"
+        ],
+        "type": "object"
+      },
+      "name": "type_text",
+      "title": "Type text"
+    },
+    {
+      "annotations": {
+        "openWorldHint": false,
+        "readOnlyHint": false,
+        "title": "Input method"
+      },
+      "description": "Input method (IME) events at the Type tool's caret, as a system IME sends them: `preedit` is the marked text (shown in place, no undo step; an empty string cancels the composition), `active` the clause being converted in characters of it, `commit` the text the IME types in its place (one undo step). Example, Japanese: {preedit:\"\u306b\u307b\u3093\", active:[3,3]} then {preedit:\"\u65e5\u672c\", active:[0,2]} then {commit:\"\u65e5\u672c\"}. Returns whether a composition is still open.",
+      "inputSchema": {
+        "properties": {
+          "active": {
+            "description": "[start, end] of the clause being converted, in characters of preedit (start = end: the IME's cursor)",
+            "items": {
+              "minimum": 0,
+              "type": "integer"
+            },
+            "maxItems": 2,
+            "minItems": 2,
+            "type": "array"
+          },
+          "commit": {
+            "description": "Committed text, typed in place of the marked text",
+            "type": "string"
+          },
+          "preedit": {
+            "description": "Marked text (replaces the previous marked text; empty = cancel)",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "name": "ime",
+      "title": "Input method"
+    },
+    {
+      "annotations": {
+        "openWorldHint": false,
+        "readOnlyHint": false,
+        "title": "Click"
+      },
+      "description": "Click at a screen point (egui points, top-left of the window = 0,0) through the real pointer path: reaches menus, panels, flyouts and dialogs. Find coordinates with ui_inspect and screenshot. Desktop app only (`designcraft-cli mcp --connect PORT`).",
+      "inputSchema": {
+        "properties": {
+          "alt": {
+            "type": "boolean"
+          },
+          "button": {
+            "description": "Default left",
+            "enum": [
+              "left",
+              "right"
+            ],
+            "type": "string"
+          },
+          "cmd": {
+            "type": "boolean"
+          },
+          "count": {
+            "description": "2 = double-click",
+            "minimum": 1,
+            "type": "integer"
+          },
+          "ctrl": {
+            "type": "boolean"
+          },
+          "shift": {
+            "type": "boolean"
+          },
+          "x": {
+            "description": "Screen x",
+            "type": "number"
+          },
+          "y": {
+            "description": "Screen y",
+            "type": "number"
+          }
+        },
+        "required": [
+          "x",
+          "y"
+        ],
+        "type": "object"
+      },
+      "name": "click",
+      "title": "Click"
+    },
+    {
+      "annotations": {
+        "openWorldHint": false,
+        "readOnlyHint": false,
+        "title": "Drag"
+      },
+      "description": "Press at (x, y), move to (toX, toY) in `steps` moves and release, in screen points through the real pointer path. Desktop app only (`designcraft-cli mcp --connect PORT`).",
+      "inputSchema": {
+        "properties": {
+          "alt": {
+            "type": "boolean"
+          },
+          "button": {
+            "description": "Default left",
+            "enum": [
+              "left",
+              "right"
+            ],
+            "type": "string"
+          },
+          "cmd": {
+            "type": "boolean"
+          },
+          "ctrl": {
+            "type": "boolean"
+          },
+          "shift": {
+            "type": "boolean"
+          },
+          "steps": {
+            "description": "Intermediate moves (default 8)",
+            "minimum": 1,
+            "type": "integer"
+          },
+          "toX": {
+            "description": "End x",
+            "type": "number"
+          },
+          "toY": {
+            "description": "End y",
+            "type": "number"
+          },
+          "x": {
+            "description": "Start x",
+            "type": "number"
+          },
+          "y": {
+            "description": "Start y",
+            "type": "number"
+          }
+        },
+        "required": [
+          "x",
+          "y",
+          "toX",
+          "toY"
+        ],
+        "type": "object"
+      },
+      "name": "drag",
+      "title": "Drag"
+    },
+    {
+      "annotations": {
+        "openWorldHint": false,
+        "readOnlyHint": true,
+        "title": "List menus"
+      },
+      "description": "The menu bar tree (menus, entries as cmd:/ui: command ids, separators, submenus). Desktop app only (`designcraft-cli mcp --connect PORT`).",
+      "inputSchema": {
+        "properties": {},
+        "type": "object"
+      },
+      "name": "menu_list",
+      "title": "List menus"
+    },
+    {
+      "annotations": {
+        "openWorldHint": false,
+        "readOnlyHint": true,
+        "title": "Inspect UI"
+      },
+      "description": "UI state: active tool, panels, view (zoom, origin), canvas rect in screen points, window size, documents, open dialog, perf. Desktop app only (`designcraft-cli mcp --connect PORT`).",
+      "inputSchema": {
+        "properties": {},
+        "type": "object"
+      },
+      "name": "ui_inspect",
+      "title": "Inspect UI"
+    },
+    {
+      "annotations": {
+        "openWorldHint": false,
+        "readOnlyHint": false,
+        "title": "Set UI state"
+      },
+      "description": "Change UI state: panel to open or close, brightness, status text, rulers/guides/frameEdges/baselineGrid/documentGrid/textThreads, Control bar, dock expanded, screenMode, zoom, page (1-based), fit (page|spread). Desktop app only (`designcraft-cli mcp --connect PORT`).",
+      "inputSchema": {
+        "properties": {
+          "baselineGrid": {
+            "type": "boolean"
+          },
+          "brightness": {
+            "enum": [
+              "dark",
+              "mediumDark",
+              "mediumLight",
+              "light"
+            ],
+            "type": "string"
+          },
+          "closePanel": {
+            "description": "Close the panel that is showing",
+            "type": "boolean"
+          },
+          "controlBar": {
+            "description": "Show the Control bar",
+            "type": "boolean"
+          },
+          "dockExpanded": {
+            "description": "Expand the panel dock (false: icons only)",
+            "type": "boolean"
+          },
+          "documentGrid": {
+            "type": "boolean"
+          },
+          "fit": {
+            "enum": [
+              "page",
+              "spread"
+            ],
+            "type": "string"
+          },
+          "frameEdges": {
+            "type": "boolean"
+          },
+          "guides": {
+            "type": "boolean"
+          },
+          "page": {
+            "description": "Go to page (1-based)",
+            "minimum": 1,
+            "type": "integer"
+          },
+          "panel": {
+            "description": "Panel: properties, pages, layers, swatches, paragraphStyles, characterStyles, stroke, character, paragraph, textWrap, links",
+            "type": "string"
+          },
+          "rulers": {
+            "type": "boolean"
+          },
+          "screenMode": {
+            "enum": [
+              "normal",
+              "preview",
+              "bleed",
+              "slug",
+              "presentation"
+            ],
+            "type": "string"
+          },
+          "status": {
+            "description": "Status bar text",
+            "type": "string"
+          },
+          "textThreads": {
+            "type": "boolean"
+          },
+          "zoom": {
+            "description": "1.0 = 100%",
+            "type": "number"
+          }
+        },
+        "type": "object"
+      },
+      "name": "ui_set",
+      "title": "Set UI state"
+    },
+    {
+      "annotations": {
+        "openWorldHint": false,
+        "readOnlyHint": false,
+        "title": "Set dialog field"
+      },
+      "description": "Set a field of the open dialog (see ui_inspect \u2192 dialog for its fields). Desktop app only (`designcraft-cli mcp --connect PORT`).",
+      "inputSchema": {
+        "properties": {
+          "field": {
+            "description": "Field name",
+            "type": "string"
+          },
+          "value": {
+            "description": "New value"
+          }
+        },
+        "required": [
+          "field",
+          "value"
+        ],
+        "type": "object"
+      },
+      "name": "dialog_set",
+      "title": "Set dialog field"
+    },
+    {
+      "annotations": {
+        "openWorldHint": false,
+        "readOnlyHint": false,
+        "title": "Confirm dialog"
+      },
+      "description": "Press OK in the open dialog. Desktop app only (`designcraft-cli mcp --connect PORT`).",
+      "inputSchema": {
+        "properties": {},
+        "type": "object"
+      },
+      "name": "dialog_confirm",
+      "title": "Confirm dialog"
+    },
+    {
+      "annotations": {
+        "openWorldHint": false,
+        "readOnlyHint": false,
+        "title": "Cancel dialog"
+      },
+      "description": "Press Cancel in the open dialog. Desktop app only (`designcraft-cli mcp --connect PORT`).",
+      "inputSchema": {
+        "properties": {},
+        "type": "object"
+      },
+      "name": "dialog_cancel",
+      "title": "Cancel dialog"
+    }
+  ]
+}

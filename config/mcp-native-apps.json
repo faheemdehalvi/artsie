@@ -1,0 +1,132 @@
+{
+  "mcpServers": {
+    "photocraft": {
+      "command": "/Users/faheemdehalvi/Desktop/faheems crazy conspiracy theories/Heem's Brain/ARTsie/bin/photocraft-cli",
+      "args": [
+        "mcp",
+        "--automation-read-root",
+        "/Users/faheemdehalvi/Desktop/faheems crazy conspiracy theories/Heem's Brain/ARTsie/workspace",
+        "--automation-write-root",
+        "/Users/faheemdehalvi/Desktop/faheems crazy conspiracy theories/Heem's Brain/ARTsie/workspace"
+      ],
+      "cwd": "/Users/faheemdehalvi/Desktop/faheems crazy conspiracy theories/Heem's Brain/ARTsie/workspace"
+    },
+    "vectorcraft": {
+      "command": "/Users/faheemdehalvi/Desktop/faheems crazy conspiracy theories/Heem's Brain/ARTsie/bin/vectorcraft-cli",
+      "args": [
+        "mcp",
+        "--automation-read-root",
+        "/Users/faheemdehalvi/Desktop/faheems crazy conspiracy theories/Heem's Brain/ARTsie/workspace",
+        "--automation-write-root",
+        "/Users/faheemdehalvi/Desktop/faheems crazy conspiracy theories/Heem's Brain/ARTsie/workspace"
+      ],
+      "cwd": "/Users/faheemdehalvi/Desktop/faheems crazy conspiracy theories/Heem's Brain/ARTsie/workspace"
+    },
+    "filmcraft": {
+      "command": "/Users/faheemdehalvi/Desktop/faheems crazy conspiracy theories/Heem's Brain/ARTsie/bin/filmcraft-cli",
+      "args": [
+        "mcp"
+      ],
+      "cwd": "/Users/faheemdehalvi/Desktop/faheems crazy conspiracy theories/Heem's Brain/ARTsie/workspace"
+    },
+    "lightcraft": {
+      "command": "/Users/faheemdehalvi/Desktop/faheems crazy conspiracy theories/Heem's Brain/ARTsie/bin/lightcraft-cli",
+      "args": [
+        "mcp",
+        "--compact"
+      ],
+      "cwd": "/Users/faheemdehalvi/Desktop/faheems crazy conspiracy theories/Heem's Brain/ARTsie/workspace"
+    },
+    "pdfcraft": {
+      "command": "/Users/faheemdehalvi/Desktop/faheems crazy conspiracy theories/Heem's Brain/ARTsie/bin/pdfcraft-cli",
+      "args": [
+        "mcp",
+        "--automation-read-root",
+        "/Users/faheemdehalvi/Desktop/faheems crazy conspiracy theories/Heem's Brain/ARTsie/workspace",
+        "--automation-write-root",
+        "/Users/faheemdehalvi/Desktop/faheems crazy conspiracy theories/Heem's Brain/ARTsie/workspace"
+      ],
+      "cwd": "/Users/faheemdehalvi/Desktop/faheems crazy conspiracy theories/Heem's Brain/ARTsie/workspace"
+    },
+    "effectcraft": {
+      "command": "/Users/faheemdehalvi/Desktop/faheems crazy conspiracy theories/Heem's Brain/ARTsie/bin/effectcraft-cli",
+      "args": [
+        "mcp",
+        "--automation-read-root",
+        "/Users/faheemdehalvi/Desktop/faheems crazy conspiracy theories/Heem's Brain/ARTsie/workspace",
+        "--automation-write-root",
+        "/Users/faheemdehalvi/Desktop/faheems crazy conspiracy theories/Heem's Brain/ARTsie/workspace"
+      ],
+      "cwd": "/Users/faheemdehalvi/Desktop/faheems crazy conspiracy theories/Heem's Brain/ARTsie/workspace"
+    },
+    "designcraft": {
+      "command": "/Users/faheemdehalvi/Desktop/faheems crazy conspiracy theories/Heem's Brain/ARTsie/bin/designcraft-cli",
+      "args": [
+        "mcp",
+        "--automation-read-root",
+        "/Users/faheemdehalvi/Desktop/faheems crazy conspiracy theories/Heem's Brain/ARTsie/workspace",
+        "--automation-write-root",
+        "/Users/faheemdehalvi/Desktop/faheems crazy conspiracy theories/Heem's Brain/ARTsie/workspace"
+      ],
+      "cwd": "/Users/faheemdehalvi/Desktop/faheems crazy conspiracy theories/Heem's Brain/ARTsie/workspace"
+    },
+    "figcraft": {
+      "command": "/Users/faheemdehalvi/Desktop/faheems crazy conspiracy theories/Heem's Brain/ARTsie/bin/figcraft-cli",
+      "args": [
+        "mcp",
+        "--automation-read-root",
+        "/Users/faheemdehalvi/Desktop/faheems crazy conspiracy theories/Heem's Brain/ARTsie/workspace",
+        "--automation-write-root",
+        "/Users/faheemdehalvi/Desktop/faheems crazy conspiracy theories/Heem's Brain/ARTsie/workspace"
+      ],
+      "cwd": "/Users/faheemdehalvi/Desktop/faheems crazy conspiracy theories/Heem's Brain/ARTsie/workspace"
+    },
+    "wordcraft": {
+      "command": "/Users/faheemdehalvi/Desktop/faheems crazy conspiracy theories/Heem's Brain/ARTsie/bin/wordcraft-cli",
+      "args": [
+        "mcp",
+        "--automation-read-root",
+        "/Users/faheemdehalvi/Desktop/faheems crazy conspiracy theories/Heem's Brain/ARTsie/workspace",
+        "--automation-write-root",
+        "/Users/faheemdehalvi/Desktop/faheems crazy conspiracy theories/Heem's Brain/ARTsie/workspace"
+      ],
+      "cwd": "/Users/faheemdehalvi/Desktop/faheems crazy conspiracy theories/Heem's Brain/ARTsie/workspace"
+    },
+    "soundcraft": {
+      "command": "/Users/faheemdehalvi/Desktop/faheems crazy conspiracy theories/Heem's Brain/ARTsie/bin/soundcraft-cli",
+      "args": [
+        "mcp",
+        "--automation-read-root",
+        "/Users/faheemdehalvi/Desktop/faheems crazy conspiracy theories/Heem's Brain/ARTsie/workspace",
+        "--automation-write-root",
+        "/Users/faheemdehalvi/Desktop/faheems crazy conspiracy theories/Heem's Brain/ARTsie/workspace"
+      ],
+      "cwd": "/Users/faheemdehalvi/Desktop/faheems crazy conspiracy theories/Heem's Brain/ARTsie/workspace"
+    },
+    "deckcraft": {
+      "command": "/Users/faheemdehalvi/Desktop/faheems crazy conspiracy theories/Heem's Brain/ARTsie/bin/deckcraft-cli",
+      "args": [
+        "mcp",
+        "--automation-read-root",
+        "/Users/faheemdehalvi/Desktop/faheems crazy conspiracy theories/Heem's Brain/ARTsie/workspace",
+        "--automation-write-root",
+        "/Users/faheemdehalvi/Desktop/faheems crazy conspiracy theories/Heem's Brain/ARTsie/workspace"
+      ],
+      "cwd": "/Users/faheemdehalvi/Desktop/faheems crazy conspiracy theories/Heem's Brain/ARTsie/workspace"
+    },
+    "cadcraft": {
+      "command": "/Users/faheemdehalvi/Desktop/faheems crazy conspiracy theories/Heem's Brain/ARTsie/bin/cadcraft-cli",
+      "args": [
+        "mcp"
+      ],
+      "cwd": "/Users/faheemdehalvi/Desktop/faheems crazy conspiracy theories/Heem's Brain/ARTsie/workspace"
+    },
+    "gridcraft": {
+      "command": "/Users/faheemdehalvi/Desktop/faheems crazy conspiracy theories/Heem's Brain/ARTsie/bin/gridcraft-cli",
+      "args": [
+        "mcp"
+      ],
+      "cwd": "/Users/faheemdehalvi/Desktop/faheems crazy conspiracy theories/Heem's Brain/ARTsie/workspace"
+    }
+  }
+}

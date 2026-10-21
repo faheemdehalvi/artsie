@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleDisplayName</key>
+	<string>ARTsie</string>
+	<key>CFBundleExecutable</key>
+	<string>ARTsie</string>
+	<key>CFBundleIdentifier</key>
+	<string>local.faheem.artsie</string>
+	<key>CFBundleName</key>
+	<string>ARTsie</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>CFBundleShortVersionString</key>
+	<string>1.0.0</string>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsLocalNetworking</key>
+		<true/>
+	</dict>
+	<key>NSAppleEventsUsageDescription</key>
+	<string>ARTsie uses the native file picker to copy the files you select into its workspace.</string>
+	<key>NSHighResolutionCapable</key>
+	<true/>
+</dict>
+</plist>

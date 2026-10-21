@@ -1,0 +1,3 @@
+#!/bin/sh
+# ARTsie unified CLI launcher (managed)
+exec /Users/faheemdehalvi/.local/node-v24.18.0-darwin-arm64/bin/node '/Users/faheemdehalvi/Desktop/faheems crazy conspiracy theories/Heem'"'"'s Brain/ARTsie/cli/src/main.ts' "$@"

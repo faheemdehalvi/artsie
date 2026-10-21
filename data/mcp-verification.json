@@ -1,0 +1,67 @@
+[
+  {
+    "app": "PhotoCraft",
+    "tools": 25,
+    "ok": true
+  },
+  {
+    "app": "VectorCraft",
+    "tools": 32,
+    "ok": true
+  },
+  {
+    "app": "FilmCraft",
+    "tools": 17,
+    "ok": true
+  },
+  {
+    "app": "LightCraft",
+    "tools": 17,
+    "ok": true
+  },
+  {
+    "app": "PdfCraft",
+    "tools": 170,
+    "ok": true
+  },
+  {
+    "app": "EffectCraft",
+    "tools": 27,
+    "ok": true
+  },
+  {
+    "app": "DesignCraft",
+    "tools": 26,
+    "ok": true
+  },
+  {
+    "app": "FigCraft",
+    "tools": 18,
+    "ok": true
+  },
+  {
+    "app": "WordCraft",
+    "tools": 16,
+    "ok": true
+  },
+  {
+    "app": "SoundCraft",
+    "tools": 17,
+    "ok": true
+  },
+  {
+    "app": "DeckCraft",
+    "tools": 25,
+    "ok": true
+  },
+  {
+    "app": "CADCraft",
+    "tools": 12,
+    "ok": true
+  },
+  {
+    "app": "GridCraft",
+    "tools": 21,
+    "ok": true
+  }
+]

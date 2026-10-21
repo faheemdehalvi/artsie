@@ -1,0 +1,329 @@
+{
+  "tools": [
+    {
+      "description": "List SoundCraft commands (id, label, menu path, shortcut, params doc, enabled).",
+      "inputSchema": {
+        "properties": {
+          "filter": {
+            "description": "substring of id or label",
+            "type": "string"
+          }
+        },
+        "required": [],
+        "type": "object"
+      },
+      "name": "list_commands"
+    },
+    {
+      "description": "Run one command by id with JSON params. Returns the command's result.",
+      "inputSchema": {
+        "properties": {
+          "command": {
+            "type": "string"
+          },
+          "params": {
+            "type": "object"
+          }
+        },
+        "required": [
+          "command"
+        ],
+        "type": "object"
+      },
+      "name": "execute"
+    },
+    {
+      "description": "Run several commands in order; stops at the first error unless keep_going.",
+      "inputSchema": {
+        "properties": {
+          "calls": {
+            "items": {
+              "properties": {
+                "command": {
+                  "type": "string"
+                },
+                "params": {
+                  "type": "object"
+                }
+              },
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "keep_going": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "calls"
+        ],
+        "type": "object"
+      },
+      "name": "batch"
+    },
+    {
+      "description": "The whole session as JSON: tracks (clips, inserts, sends, automation), busses, markers, groups, selection, transport.",
+      "inputSchema": {
+        "properties": {
+          "detail": {
+            "enum": [
+              "summary",
+              "full"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [],
+        "type": "object"
+      },
+      "name": "inspect_session"
+    },
+    {
+      "description": "Start a new session (optionally the built-in demo).",
+      "inputSchema": {
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "sample_rate": {
+            "type": "integer"
+          },
+          "template": {
+            "enum": [
+              "blank",
+              "demo"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [],
+        "type": "object"
+      },
+      "name": "new_session"
+    },
+    {
+      "description": "Open a .scraft session file.",
+      "inputSchema": {
+        "properties": {
+          "path": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "path"
+        ],
+        "type": "object"
+      },
+      "name": "open_session"
+    },
+    {
+      "description": "Save the session (path required the first time; replace: true to save over another existing file).",
+      "inputSchema": {
+        "properties": {
+          "path": {
+            "type": "string"
+          },
+          "replace": {
+            "type": "boolean"
+          }
+        },
+        "required": [],
+        "type": "object"
+      },
+      "name": "save_session"
+    },
+    {
+      "description": "Import an audio file (WAV, AIFF, FLAC, MP3, OGG, AAC/M4A, ALAC, CAF) onto a new or existing track.",
+      "inputSchema": {
+        "properties": {
+          "at": {},
+          "path": {
+            "type": "string"
+          },
+          "track": {
+            "type": [
+              "string",
+              "integer"
+            ]
+          }
+        },
+        "required": [
+          "path"
+        ],
+        "type": "object"
+      },
+      "name": "import_audio"
+    },
+    {
+      "description": "Render the mix to an audio file. Returns peak dBFS and integrated LUFS.",
+      "inputSchema": {
+        "properties": {
+          "bit_depth": {
+            "type": "string"
+          },
+          "end": {},
+          "format": {
+            "enum": [
+              "wav",
+              "aiff",
+              "flac"
+            ],
+            "type": "string"
+          },
+          "normalize": {
+            "type": "boolean"
+          },
+          "path": {
+            "type": "string"
+          },
+          "start": {}
+        },
+        "required": [
+          "path"
+        ],
+        "type": "object"
+      },
+      "name": "bounce_mix"
+    },
+    {
+      "description": "Feature-parity report against the incumbent's menu catalog.",
+      "inputSchema": {
+        "properties": {},
+        "required": [],
+        "type": "object"
+      },
+      "name": "parity"
+    },
+    {
+      "description": "APP_ONLY. Screenshot the app window (PNG).",
+      "inputSchema": {
+        "properties": {
+          "path": {
+            "type": "string"
+          }
+        },
+        "required": [],
+        "type": "object"
+      },
+      "name": "screenshot"
+    },
+    {
+      "description": "APP_ONLY. UI state: front window, panels, layout rectangles of tracks, dialogs.",
+      "inputSchema": {
+        "properties": {},
+        "required": [],
+        "type": "object"
+      },
+      "name": "ui_inspect"
+    },
+    {
+      "description": "APP_ONLY. Set UI state fields, e.g. {\"window\": \"Mix\"}.",
+      "inputSchema": {
+        "properties": {
+          "state": {
+            "type": "object"
+          }
+        },
+        "required": [
+          "state"
+        ],
+        "type": "object"
+      },
+      "name": "ui_set"
+    },
+    {
+      "description": "APP_ONLY. Invoke a menu item like a click (may open its dialog), e.g. \"Track > New...\".",
+      "inputSchema": {
+        "properties": {
+          "path": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "path"
+        ],
+        "type": "object"
+      },
+      "name": "menu_invoke"
+    },
+    {
+      "description": "APP_ONLY. Click at window coordinates (points).",
+      "inputSchema": {
+        "properties": {
+          "button": {
+            "type": "string"
+          },
+          "count": {
+            "type": "integer"
+          },
+          "x": {
+            "type": "number"
+          },
+          "y": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "x",
+          "y"
+        ],
+        "type": "object"
+      },
+      "name": "click"
+    },
+    {
+      "description": "APP_ONLY. Drag with the primary button.",
+      "inputSchema": {
+        "properties": {
+          "to_x": {
+            "type": "number"
+          },
+          "to_y": {
+            "type": "number"
+          },
+          "x": {
+            "type": "number"
+          },
+          "y": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "x",
+          "y",
+          "to_x",
+          "to_y"
+        ],
+        "type": "object"
+      },
+      "name": "drag"
+    },
+    {
+      "description": "APP_ONLY. Press a key with modifiers.",
+      "inputSchema": {
+        "properties": {
+          "alt": {
+            "type": "boolean"
+          },
+          "cmd": {
+            "type": "boolean"
+          },
+          "ctrl": {
+            "type": "boolean"
+          },
+          "key": {
+            "type": "string"
+          },
+          "shift": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "key"
+        ],
+        "type": "object"
+      },
+      "name": "key"
+    }
+  ]
+}

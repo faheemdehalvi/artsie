@@ -1,0 +1,72 @@
+{
+  "at": "2026-10-20T00:53:51.506637+00:00",
+  "isolated_native_sessions": true,
+  "apps": [
+    {
+      "app": "photocraft",
+      "tools": 25
+    },
+    {
+      "app": "vectorcraft",
+      "tools": 32
+    },
+    {
+      "app": "filmcraft",
+      "tools": 17
+    },
+    {
+      "app": "lightcraft",
+      "tools": 17
+    },
+    {
+      "app": "pdfcraft",
+      "tools": 170
+    },
+    {
+      "app": "effectcraft",
+      "tools": 27
+    },
+    {
+      "app": "designcraft",
+      "tools": 26
+    },
+    {
+      "app": "figcraft",
+      "tools": 18
+    },
+    {
+      "app": "wordcraft",
+      "tools": 16
+    },
+    {
+      "app": "soundcraft",
+      "tools": 17
+    },
+    {
+      "app": "deckcraft",
+      "tools": 25
+    },
+    {
+      "app": "cadcraft",
+      "tools": 12
+    },
+    {
+      "app": "gridcraft",
+      "tools": 21
+    }
+  ],
+  "total_tools": 423,
+  "invalid_tools_and_arguments_refused": true,
+  "photo_edit": {
+    "original": "/Users/faheemdehalvi/Desktop/faheems crazy conspiracy theories/Heem's Brain/ARTsie/workspace/Inbox/FD-CODE-CLI-QA-20261020-115351-original.png",
+    "export": "/Users/faheemdehalvi/Desktop/faheems crazy conspiracy theories/Heem's Brain/ARTsie/workspace/Exports/FD-CODE-CLI-QA-20261020-115351-inverted.png",
+    "original_preserved": true,
+    "state_retained_across_processes": true
+  },
+  "import_preserves_original_and_refuses_overwrite": true,
+  "film_project": {
+    "path": "/Users/faheemdehalvi/Desktop/faheems crazy conspiracy theories/Heem's Brain/ARTsie/workspace/Projects/FD-CODE-CLI-QA-20261020-115351.fcproj",
+    "bytes": 3333
+  },
+  "passed": true
+}

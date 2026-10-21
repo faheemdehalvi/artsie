@@ -1,0 +1,86 @@
+[
+  {
+    "app": "PhotoCraft",
+    "valid": true,
+    "details": "",
+    "method": "strict verification of identical bundle files in staging without Desktop File Provider metadata"
+  },
+  {
+    "app": "VectorCraft",
+    "valid": true,
+    "details": "",
+    "method": "strict verification of identical bundle files in staging without Desktop File Provider metadata"
+  },
+  {
+    "app": "FilmCraft",
+    "valid": true,
+    "details": "",
+    "method": "strict verification of identical bundle files in staging without Desktop File Provider metadata"
+  },
+  {
+    "app": "LightCraft",
+    "valid": true,
+    "details": "",
+    "method": "strict verification of identical bundle files in staging without Desktop File Provider metadata"
+  },
+  {
+    "app": "PdfCraft",
+    "valid": true,
+    "details": "",
+    "method": "strict verification of identical bundle files in staging without Desktop File Provider metadata"
+  },
+  {
+    "app": "EffectCraft",
+    "valid": true,
+    "details": "",
+    "method": "strict verification of identical bundle files in staging without Desktop File Provider metadata"
+  },
+  {
+    "app": "DesignCraft",
+    "valid": true,
+    "details": "",
+    "method": "strict verification of identical bundle files in staging without Desktop File Provider metadata"
+  },
+  {
+    "app": "FigCraft",
+    "valid": true,
+    "details": "",
+    "method": "strict verification of identical bundle files in staging without Desktop File Provider metadata"
+  },
+  {
+    "app": "WordCraft",
+    "valid": true,
+    "details": "",
+    "method": "strict verification of identical bundle files in staging without Desktop File Provider metadata"
+  },
+  {
+    "app": "SoundCraft",
+    "valid": true,
+    "details": "",
+    "method": "strict verification of identical bundle files in staging without Desktop File Provider metadata"
+  },
+  {
+    "app": "DeckCraft",
+    "valid": true,
+    "details": "",
+    "method": "strict verification of identical bundle files in staging without Desktop File Provider metadata"
+  },
+  {
+    "app": "CADCraft",
+    "valid": true,
+    "details": "",
+    "method": "strict verification of identical bundle files in staging without Desktop File Provider metadata"
+  },
+  {
+    "app": "GridCraft",
+    "valid": true,
+    "details": "",
+    "method": "strict verification of identical bundle files in staging without Desktop File Provider metadata"
+  },
+  {
+    "app": "ArtCraft Launcher",
+    "valid": true,
+    "details": "",
+    "method": "strict verification of identical bundle files in staging without Desktop File Provider metadata"
+  }
+]

@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "artsie": {
+      "command": "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "args": [
+        "/Users/faheemdehalvi/Desktop/faheems crazy conspiracy theories/Heem's Brain/ARTsie/artsie.py",
+        "mcp"
+      ]
+    }
+  }
+}

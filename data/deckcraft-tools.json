@@ -1,0 +1,939 @@
+{
+  "tools": [
+    {
+      "annotations": {
+        "openWorldHint": false,
+        "readOnlyHint": true,
+        "title": "List commands"
+      },
+      "description": "Every command (id, label, ribbon/menu place, shortcut, parameter summary, whether it is enabled now). Filter by a substring of id or label.",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "filter": {
+            "description": "Substring of the id or label, e.g. `format.` or `slide`",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "name": "list_commands",
+      "title": "List commands"
+    },
+    {
+      "annotations": {
+        "openWorldHint": false,
+        "readOnlyHint": false,
+        "title": "Run a command"
+      },
+      "description": "Run any command by id with JSON parameters. This is how everything is done: slide.new, shape.insert, text.set, format.bold, shape.fill, design.theme, transition.set, animation.add, table.merge, edit.undo\u2026",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "command": {
+            "description": "Command id from list_commands",
+            "type": "string"
+          },
+          "params": {
+            "description": "Parameters (see the command's params summary)",
+            "type": "object"
+          }
+        },
+        "required": [
+          "command"
+        ],
+        "type": "object"
+      },
+      "name": "run_command",
+      "title": "Run a command"
+    },
+    {
+      "annotations": {
+        "openWorldHint": false,
+        "readOnlyHint": false,
+        "title": "Run several commands"
+      },
+      "description": "Run commands in order; stops at the first error unless keepGoing. Returns each result.",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "commands": {
+            "items": {
+              "additionalProperties": false,
+              "properties": {
+                "command": {
+                  "description": "id",
+                  "type": "string"
+                },
+                "params": {
+                  "type": "object"
+                }
+              },
+              "required": [
+                "command"
+              ],
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "keepGoing": {
+            "description": "Continue after errors",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "commands"
+        ],
+        "type": "object"
+      },
+      "name": "batch",
+      "title": "Run several commands"
+    },
+    {
+      "annotations": {
+        "openWorldHint": false,
+        "readOnlyHint": false,
+        "title": "New presentation"
+      },
+      "description": "Start a new presentation (one title slide). Optional theme: DeckCraft, Harbor, Ember, Meadow, Nocturne, Paper, Coral Reef, Slate.",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "blank": {
+            "description": "No first slide",
+            "type": "boolean"
+          },
+          "theme": {
+            "description": "Theme name",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "name": "new_presentation",
+      "title": "New presentation"
+    },
+    {
+      "annotations": {
+        "openWorldHint": false,
+        "readOnlyHint": false,
+        "title": "Open presentation"
+      },
+      "description": "Open a .deckcraft or .pptx file by path.",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "path": {
+            "description": "File path",
+            "type": "string"
+          }
+        },
+        "required": [
+          "path"
+        ],
+        "type": "object"
+      },
+      "name": "open_presentation",
+      "title": "Open presentation"
+    },
+    {
+      "annotations": {
+        "openWorldHint": false,
+        "readOnlyHint": false,
+        "title": "Save presentation"
+      },
+      "description": "Save the active presentation (.deckcraft or .pptx by extension).",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "path": {
+            "description": "File path (optional when it was opened from a file)",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "name": "save_presentation",
+      "title": "Save presentation"
+    },
+    {
+      "annotations": {
+        "openWorldHint": false,
+        "readOnlyHint": false,
+        "title": "Export"
+      },
+      "description": "Export slides: png/jpeg (one slide, or all with all:true), pptx, deckcraft, outline text, pdf (slides, notes pages or handouts), or an animated gif of the deck (one frame per slide).",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "all": {
+            "description": "All slides (images)",
+            "type": "boolean"
+          },
+          "dpi": {
+            "description": "PDF: raster resolution of slide artwork, 36-600 (default 200)",
+            "type": "number"
+          },
+          "format": {
+            "description": "Output format (default: from the path's extension)",
+            "enum": [
+              "png",
+              "jpeg",
+              "pptx",
+              "deckcraft",
+              "outline",
+              "pdf",
+              "gif"
+            ],
+            "type": "string"
+          },
+          "frame": {
+            "description": "PDF notes/handouts: thin frame around each slide (default true)",
+            "type": "boolean"
+          },
+          "includeHidden": {
+            "description": "PDF and GIF: include hidden slides (default false)",
+            "type": "boolean"
+          },
+          "layout": {
+            "description": "PDF page layout (default slides)",
+            "enum": [
+              "slides",
+              "notes",
+              "handouts"
+            ],
+            "type": "string"
+          },
+          "loop": {
+            "description": "GIF: loop forever (true, default) or play once (false)",
+            "type": "boolean"
+          },
+          "orientation": {
+            "description": "PDF notes/handouts: page orientation (default portrait)",
+            "enum": [
+              "portrait",
+              "landscape"
+            ],
+            "type": "string"
+          },
+          "paper": {
+            "description": "PDF notes/handouts: paper size (default letter)",
+            "enum": [
+              "letter",
+              "a4",
+              "legal",
+              "a3"
+            ],
+            "type": "string"
+          },
+          "path": {
+            "description": "Output path",
+            "type": "string"
+          },
+          "perPage": {
+            "description": "PDF handouts: slides per page (default 6)",
+            "enum": [
+              1,
+              2,
+              3,
+              4,
+              6,
+              9
+            ],
+            "type": "integer"
+          },
+          "scale": {
+            "description": "Pixels per point for images (default 2)",
+            "type": "number"
+          },
+          "secondsPerSlide": {
+            "description": "GIF: seconds each slide shows (default 5)",
+            "maximum": 600,
+            "minimum": 0.1,
+            "type": "number"
+          },
+          "slide": {
+            "description": "Slide index for images",
+            "minimum": 0,
+            "type": "integer"
+          },
+          "slides": {
+            "description": "PDF and GIF: slide indices to export, in order (default all)",
+            "items": {
+              "minimum": 0,
+              "type": "integer"
+            },
+            "type": "array"
+          },
+          "textLayer": {
+            "description": "PDF: invisible text layer for search, select and copy (default true)",
+            "type": "boolean"
+          },
+          "width": {
+            "description": "GIF: frame width in pixels, or a size: small 640, medium 960 (default), large 1280, extraLarge 1920; the height follows the slide's shape",
+            "oneOf": [
+              {
+                "maximum": 3840,
+                "minimum": 16,
+                "type": "integer"
+              },
+              {
+                "enum": [
+                  "small",
+                  "medium",
+                  "large",
+                  "extraLarge"
+                ],
+                "type": "string"
+              }
+            ]
+          }
+        },
+        "required": [
+          "path"
+        ],
+        "type": "object"
+      },
+      "name": "export",
+      "title": "Export"
+    },
+    {
+      "annotations": {
+        "openWorldHint": false,
+        "readOnlyHint": true,
+        "title": "Inspect presentation"
+      },
+      "description": "Slides (index, id, title, layout, shape count, transition, animations, notes), sections, theme, layouts, media and the selection.",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {},
+        "type": "object"
+      },
+      "name": "inspect_document",
+      "title": "Inspect presentation"
+    },
+    {
+      "annotations": {
+        "openWorldHint": false,
+        "readOnlyHint": true,
+        "title": "Inspect slide"
+      },
+      "description": "One slide's shapes with ids, kinds, boxes [x,y,w,h], placeholder types, text, fills, tables, charts; plus background, transition, animations, notes.",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "index": {
+            "description": "Slide index (default: current)",
+            "minimum": 0,
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "name": "inspect_slide",
+      "title": "Inspect slide"
+    },
+    {
+      "annotations": {
+        "openWorldHint": false,
+        "readOnlyHint": true,
+        "title": "Render slide"
+      },
+      "description": "Render a slide to a PNG image and return it, to check your work visually.",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "edit": {
+            "description": "Show placeholder prompts like the editor",
+            "type": "boolean"
+          },
+          "scale": {
+            "description": "Pixels per point (default 1 = 960\u00d7540 for 16:9)",
+            "type": "number"
+          },
+          "slide": {
+            "description": "Slide index (default: current)",
+            "minimum": 0,
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "name": "render_slide",
+      "title": "Render slide"
+    },
+    {
+      "annotations": {
+        "openWorldHint": false,
+        "readOnlyHint": false,
+        "title": "Add slide"
+      },
+      "description": "Insert a slide after the current one with a layout (title, titleAndContent, sectionHeader, twoContent, comparison, titleOnly, blank, contentWithCaption, pictureWithCaption) and optional title/body text (body: one paragraph per line, leading tabs indent).",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "body": {
+            "description": "Body text",
+            "type": "string"
+          },
+          "layout": {
+            "description": "Layout name or kind",
+            "type": "string"
+          },
+          "title": {
+            "description": "Title text",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "name": "add_slide",
+      "title": "Add slide"
+    },
+    {
+      "annotations": {
+        "openWorldHint": false,
+        "readOnlyHint": false,
+        "title": "Go to slide"
+      },
+      "description": "Make a slide current (shape commands act on the current slide).",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "index": {
+            "description": "Slide index",
+            "minimum": 0,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "index"
+        ],
+        "type": "object"
+      },
+      "name": "go_to_slide",
+      "title": "Go to slide"
+    },
+    {
+      "annotations": {
+        "openWorldHint": false,
+        "readOnlyHint": false,
+        "title": "Add shape"
+      },
+      "description": "Insert a preset shape (rect, roundRect, ellipse, triangle, diamond, rightArrow, chevron, star5, heart, cloud, wedgeRectCallout, line, straightConnector1\u2026 see shape.presets) at x,y with size w\u00d7h, with optional text and fill colour (#RRGGBB or accent1..6).",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "fill": {
+            "description": "Fill colour",
+            "type": "string"
+          },
+          "h": {
+            "description": "Height (pt)",
+            "type": "number"
+          },
+          "line": {
+            "description": "Outline colour or `none`",
+            "type": "string"
+          },
+          "preset": {
+            "description": "Preset name",
+            "type": "string"
+          },
+          "text": {
+            "description": "Text inside",
+            "type": "string"
+          },
+          "w": {
+            "description": "Width (pt)",
+            "type": "number"
+          },
+          "x": {
+            "description": "Left (pt)",
+            "type": "number"
+          },
+          "y": {
+            "description": "Top (pt)",
+            "type": "number"
+          }
+        },
+        "required": [
+          "preset",
+          "x",
+          "y",
+          "w",
+          "h"
+        ],
+        "type": "object"
+      },
+      "name": "add_shape",
+      "title": "Add shape"
+    },
+    {
+      "annotations": {
+        "openWorldHint": false,
+        "readOnlyHint": false,
+        "title": "Add text box"
+      },
+      "description": "Insert a text box. Height grows to fit the text.",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "align": {
+            "description": "left|center|right|justify",
+            "type": "string"
+          },
+          "color": {
+            "description": "Text colour",
+            "type": "string"
+          },
+          "h": {
+            "description": "Height (pt)",
+            "type": "number"
+          },
+          "size": {
+            "description": "Font size (pt)",
+            "type": "number"
+          },
+          "text": {
+            "description": "Text (one paragraph per line)",
+            "type": "string"
+          },
+          "w": {
+            "description": "Width (pt)",
+            "type": "number"
+          },
+          "x": {
+            "description": "Left (pt)",
+            "type": "number"
+          },
+          "y": {
+            "description": "Top (pt)",
+            "type": "number"
+          }
+        },
+        "required": [
+          "x",
+          "y",
+          "w",
+          "text"
+        ],
+        "type": "object"
+      },
+      "name": "add_text_box",
+      "title": "Add text box"
+    },
+    {
+      "annotations": {
+        "openWorldHint": false,
+        "readOnlyHint": false,
+        "title": "Set text"
+      },
+      "description": "Replace a shape's text (keeps its first run's formatting). Leading tabs set bullet levels.",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "description": "Shape id (from inspect_slide)",
+            "minimum": 0,
+            "type": "integer"
+          },
+          "text": {
+            "description": "New text",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "text"
+        ],
+        "type": "object"
+      },
+      "name": "set_text",
+      "title": "Set text"
+    },
+    {
+      "annotations": {
+        "openWorldHint": false,
+        "readOnlyHint": false,
+        "title": "Insert picture"
+      },
+      "description": "Insert a picture from a file path or base64 data, optionally at a box.",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "data": {
+            "description": "Base64 image data (instead of path)",
+            "type": "string"
+          },
+          "h": {
+            "description": "Height",
+            "type": "number"
+          },
+          "name": {
+            "description": "File name for data",
+            "type": "string"
+          },
+          "path": {
+            "description": "Image file path",
+            "type": "string"
+          },
+          "w": {
+            "description": "Width",
+            "type": "number"
+          },
+          "x": {
+            "description": "Left",
+            "type": "number"
+          },
+          "y": {
+            "description": "Top",
+            "type": "number"
+          }
+        },
+        "type": "object"
+      },
+      "name": "insert_picture",
+      "title": "Insert picture"
+    },
+    {
+      "annotations": {
+        "openWorldHint": false,
+        "readOnlyHint": false,
+        "title": "Insert table"
+      },
+      "description": "Insert a table with rows\u00d7cols and optional cell text (data: rows of strings).",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "cols": {
+            "description": "Columns",
+            "minimum": 0,
+            "type": "integer"
+          },
+          "data": {
+            "items": {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "type": "array"
+          },
+          "h": {
+            "description": "Height",
+            "type": "number"
+          },
+          "rows": {
+            "description": "Rows",
+            "minimum": 0,
+            "type": "integer"
+          },
+          "w": {
+            "description": "Width",
+            "type": "number"
+          },
+          "x": {
+            "description": "Left",
+            "type": "number"
+          },
+          "y": {
+            "description": "Top",
+            "type": "number"
+          }
+        },
+        "required": [
+          "rows",
+          "cols"
+        ],
+        "type": "object"
+      },
+      "name": "insert_table",
+      "title": "Insert table"
+    },
+    {
+      "annotations": {
+        "openWorldHint": false,
+        "readOnlyHint": false,
+        "title": "Insert chart"
+      },
+      "description": "Insert a chart (column, bar, line, pie, doughnut, area, scatter, stackedColumn\u2026) with categories and series.",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "categories": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "series": {
+            "items": {
+              "additionalProperties": false,
+              "properties": {
+                "name": {
+                  "description": "Series name",
+                  "type": "string"
+                },
+                "values": {
+                  "items": {
+                    "type": "number"
+                  },
+                  "type": "array"
+                }
+              },
+              "required": [
+                "values"
+              ],
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "title": {
+            "description": "Chart title",
+            "type": "string"
+          },
+          "type": {
+            "description": "Chart type",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "name": "insert_chart",
+      "title": "Insert chart"
+    },
+    {
+      "annotations": {
+        "openWorldHint": false,
+        "readOnlyHint": false,
+        "title": "Select shapes"
+      },
+      "description": "Select shapes by id (formatting commands then act on them).",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "ids": {
+            "items": {
+              "type": "integer"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "ids"
+        ],
+        "type": "object"
+      },
+      "name": "select",
+      "title": "Select shapes"
+    },
+    {
+      "annotations": {
+        "openWorldHint": false,
+        "readOnlyHint": false,
+        "title": "Pointer gesture"
+      },
+      "description": "Drive the active tool with pointer events in slide points: down/drag/up/move/doubleclick/contextclick, exactly like the mouse (draws, moves, resizes, rotates, places the caret; contextclick selects like a right click).",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "events": {
+            "items": {
+              "additionalProperties": false,
+              "properties": {
+                "kind": {
+                  "description": "down|drag|up|move|doubleclick|tripleclick|contextclick",
+                  "type": "string"
+                },
+                "mods": {
+                  "additionalProperties": false,
+                  "description": "Modifier keys (cmd = Command on macOS / Ctrl elsewhere; alt = Option)",
+                  "properties": {
+                    "alt": {
+                      "type": "boolean"
+                    },
+                    "cmd": {
+                      "type": "boolean"
+                    },
+                    "shift": {
+                      "type": "boolean"
+                    }
+                  },
+                  "type": "object"
+                },
+                "x": {
+                  "description": "x (pt)",
+                  "type": "number"
+                },
+                "y": {
+                  "description": "y (pt)",
+                  "type": "number"
+                }
+              },
+              "required": [
+                "kind",
+                "x",
+                "y"
+              ],
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "mods": {
+            "additionalProperties": false,
+            "description": "Modifier keys (cmd = Command on macOS / Ctrl elsewhere; alt = Option)",
+            "properties": {
+              "alt": {
+                "type": "boolean"
+              },
+              "cmd": {
+                "type": "boolean"
+              },
+              "shift": {
+                "type": "boolean"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "required": [
+          "events"
+        ],
+        "type": "object"
+      },
+      "name": "pointer",
+      "title": "Pointer gesture"
+    },
+    {
+      "annotations": {
+        "openWorldHint": false,
+        "readOnlyHint": false,
+        "title": "Select tool"
+      },
+      "description": "Pick the pointer tool: select, textBox, shape (with preset), pen, highlighter, eraser \u2014 or a preset name.",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "preset": {
+            "description": "Shape preset for the shape tool",
+            "type": "string"
+          },
+          "tool": {
+            "description": "Tool name",
+            "type": "string"
+          }
+        },
+        "required": [
+          "tool"
+        ],
+        "type": "object"
+      },
+      "name": "select_tool",
+      "title": "Select tool"
+    },
+    {
+      "annotations": {
+        "openWorldHint": false,
+        "readOnlyHint": false,
+        "title": "Press key"
+      },
+      "description": "Press a key as on the keyboard: text editing keys (arrows, Backspace, Enter, Tab), nudges, and shortcuts (cmd+B\u2026).",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "key": {
+            "description": "Key name or character",
+            "type": "string"
+          },
+          "mods": {
+            "additionalProperties": false,
+            "description": "Modifier keys (cmd = Command on macOS / Ctrl elsewhere; alt = Option)",
+            "properties": {
+              "alt": {
+                "type": "boolean"
+              },
+              "cmd": {
+                "type": "boolean"
+              },
+              "shift": {
+                "type": "boolean"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "required": [
+          "key"
+        ],
+        "type": "object"
+      },
+      "name": "key",
+      "title": "Press key"
+    },
+    {
+      "annotations": {
+        "openWorldHint": false,
+        "readOnlyHint": false,
+        "title": "Type text"
+      },
+      "description": "Type text into the text being edited (or into the selected shape).",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "text": {
+            "description": "Text",
+            "type": "string"
+          }
+        },
+        "required": [
+          "text"
+        ],
+        "type": "object"
+      },
+      "name": "type_text",
+      "title": "Type text"
+    },
+    {
+      "annotations": {
+        "openWorldHint": false,
+        "readOnlyHint": true,
+        "title": "Screenshot"
+      },
+      "description": "Screenshot of the whole DeckCraft window (UI included). Desktop app only (`deckcraft-cli mcp --connect PORT`).",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {},
+        "type": "object"
+      },
+      "name": "screenshot",
+      "title": "Screenshot"
+    },
+    {
+      "annotations": {
+        "openWorldHint": false,
+        "readOnlyHint": false,
+        "title": "Call app method"
+      },
+      "description": "Call any control-channel method (ui.click, ui.set, ui.dialog.*, ui.inspect\u2026). Desktop app only (`deckcraft-cli mcp --connect PORT`).",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "method": {
+            "description": "Method",
+            "type": "string"
+          },
+          "params": {
+            "type": "object"
+          }
+        },
+        "required": [
+          "method"
+        ],
+        "type": "object"
+      },
+      "name": "call_app",
+      "title": "Call app method"
+    }
+  ]
+}

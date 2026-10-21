@@ -1,0 +1,18 @@
+# Upstream ArtCraft binaries and archives (reinstall with scripts/install_suite.py; provenance in config/catalog.json)
+/Applications/
+/downloads/
+/tools/
+/sources/
+# Your files
+/workspace/
+# Runtime state and secrets
+/logs/
+/data/photocraft-control-token
+/data/hub-start.lock
+*.log
+install.log
+# Build and dependency output
+node_modules/
+__pycache__/
+*.pyc
+.DS_Store

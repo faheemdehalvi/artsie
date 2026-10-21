@@ -1,0 +1,92 @@
+{
+  "at": "2026-10-20T00:54:17.325238+00:00",
+  "apps": [
+    {
+      "app": "PhotoCraft",
+      "version": "v0.10.0",
+      "tools": 25
+    },
+    {
+      "app": "VectorCraft",
+      "version": "v0.13.1",
+      "tools": 32
+    },
+    {
+      "app": "FilmCraft",
+      "version": "v0.9.0",
+      "tools": 17
+    },
+    {
+      "app": "LightCraft",
+      "version": "v0.9.1",
+      "tools": 17
+    },
+    {
+      "app": "PdfCraft",
+      "version": "v0.9.0",
+      "tools": 170
+    },
+    {
+      "app": "EffectCraft",
+      "version": "v0.11.1",
+      "tools": 27
+    },
+    {
+      "app": "DesignCraft",
+      "version": "v0.9.0",
+      "tools": 26
+    },
+    {
+      "app": "FigCraft",
+      "version": "v0.7.0",
+      "tools": 18
+    },
+    {
+      "app": "WordCraft",
+      "version": "v0.8.0",
+      "tools": 16
+    },
+    {
+      "app": "SoundCraft",
+      "version": "v0.8.0",
+      "tools": 17
+    },
+    {
+      "app": "DeckCraft",
+      "version": "v0.8.0",
+      "tools": 25
+    },
+    {
+      "app": "CADCraft",
+      "version": "v0.8.0",
+      "tools": 12
+    },
+    {
+      "app": "GridCraft",
+      "version": "v0.8.0",
+      "tools": 21
+    }
+  ],
+  "photo_edit": {
+    "original": "workspace/Inbox/ARTsie-test-original.png",
+    "export": "workspace/Exports/ARTsie-test-inverted.png",
+    "original_preserved": true,
+    "workspace_boundary_checked": true
+  },
+  "film_project": {
+    "path": "workspace/Projects/ARTsie-test.fcproj",
+    "inspection": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\n  \"audio\": [\n    {\n      \"enabled\": true,\n      \"id\": 4,\n      \"items\": [],\n      \"locked\": false,\n      \"muted\": false,\n      \"name\": \"Audio 1\",\n      \"solo\": false,\n      \"syncLock\": true,\n      \"transitions\": []\n    },\n    {\n      \"enabled\": true,\n      \"id\": 5,\n      \"items\": [],\n      \"locked\": false,\n      \"muted\": false,\n      \"name\": \"Audio 2\",\n      \"solo\": false,\n      \"syncLock\": true,\n      \"transitions\": []\n    },\n    {\n      \"enabled\": true,\n      \"id\": 6,\n      \"items\": [],\n      \"locked\": false,\n      \"muted\": false,\n      \"name\": \"Audio 3\",\n      \"solo\": false,\n      \"syncLock\": true,\n      \"transitions\": []\n    }\n  ],\n  \"duration\": 0,\n  \"durationFrames\": 0,\n  \"gapSelection\": null,\n  \"id\": 7,\n  \"in\": null,\n  \"markers\": [],\n  \"name\": \"ARTsie test sequence\",\n  \"out\": null,\n  \"playhead\": null,\n  \"selection\": [],\n  \"settings\": {\n    \"audio_master\": \"Stereo\",\n    \"color\": {\n      \"auto_tone_map\": true,\n      \"wide_gamut\": false,\n      \"working\": \"Rec709\"\n    },\n    \"drop_frame\": false,\n    \"frame_rate\": {\n      \"den\": 1,\n      \"num\": 25\n    },\n    \"height\": 720,\n    \"max_bit_depth\": false,\n    \"max_render_quality\": false,\n    \"par\": [\n      1,\n      1\n    ],\n    \"preset\": \"1280x720 25\",\n    \"preview_codec\": \"ProRes 422\",\n    \"sample_rate\": 48000,\n    \"width\": 1280,\n    \"working_space\": \"Rec. 709\"\n  },\n  \"split\": {\n    \"audioIn\": null,\n    \"audioOut\": null,\n    \"videoIn\": null,\n    \"videoOut\": null\n  },\n  \"transitionSelection\": [],\n  \"video\": [\n    {\n      \"enabled\": true,\n      \"id\": 1,\n      \"items\": [],\n      \"locked\": false,\n      \"muted\": false,\n      \"name\": \"Video 1\",\n      \"solo\": false,\n      \"syncLock\": true,\n      \"transitions\": []\n    },\n    {\n      \"enabled\": true,\n      \"id\": 2,\n      \"items\": [],\n      \"locked\": false,\n      \"muted\": false,\n      \"name\": \"Video 2\",\n      \"solo\": false,\n      \"syncLock\": true,\n      \"transitions\": []\n    },\n    {\n      \"enabled\": true,\n      \"id\": 3,\n      \"items\": [],\n      \"locked\": false,\n      \"muted\": false,\n      \"name\": \"Video 3\",\n      \"solo\": false,\n      \"syncLock\": true,\n      \"transitions\": []\n    }\n  ]\n}"
+        }
+      ],
+      "isError": false
+    }
+  },
+  "gateway_stdio": {
+    "passed": true,
+    "tools": 9
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "name": "@faheem/artsie-cli",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "One local CLI for all ARTsie creative apps and FD CODE agents",
+  "engines": {
+    "node": ">=24.10"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "test": "node --test test/*.test.mjs"
+  },
+  "dependencies": {
+    "incur": "0.6.1",
+    "@cfworker/json-schema": "4.1.1"
+  },
+  "devDependencies": {
+    "@types/node": "24.10.0",
+    "typescript": "5.9.3"
+  }
+}

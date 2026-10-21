@@ -1,0 +1,368 @@
+{
+  "tools": [
+    {
+      "annotations": {
+        "openWorldHint": false,
+        "readOnlyHint": true,
+        "title": "List commands"
+      },
+      "description": "Every WordCraft command: id, label, ribbon location, shortcut and params. Filter with `query`.",
+      "inputSchema": {
+        "properties": {
+          "query": {
+            "description": "Case-insensitive filter on id/label/location",
+            "type": "string"
+          }
+        },
+        "required": [],
+        "type": "object"
+      },
+      "name": "list_commands",
+      "title": "List commands"
+    },
+    {
+      "annotations": {
+        "openWorldHint": false,
+        "readOnlyHint": false,
+        "title": "Run a command"
+      },
+      "description": "Run one command by id with params, e.g. {command:\"format.bold\"} or {command:\"insert.table\", params:{rows:3, cols:4}}.",
+      "inputSchema": {
+        "properties": {
+          "command": {
+            "description": "Command id",
+            "type": "string"
+          },
+          "params": {
+            "description": "Command parameters",
+            "type": "object"
+          }
+        },
+        "required": [
+          "command"
+        ],
+        "type": "object"
+      },
+      "name": "execute",
+      "title": "Run a command"
+    },
+    {
+      "annotations": {
+        "openWorldHint": false,
+        "readOnlyHint": false,
+        "title": "Run several commands"
+      },
+      "description": "Run commands in order; stops at the first error unless keepGoing.",
+      "inputSchema": {
+        "properties": {
+          "commands": {
+            "items": {
+              "properties": {
+                "command": {
+                  "type": "string"
+                },
+                "params": {
+                  "type": "object"
+                }
+              },
+              "required": [
+                "command"
+              ],
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "keepGoing": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "commands"
+        ],
+        "type": "object"
+      },
+      "name": "batch",
+      "title": "Run several commands"
+    },
+    {
+      "annotations": {
+        "openWorldHint": false,
+        "readOnlyHint": false,
+        "title": "New document"
+      },
+      "description": "Start a document: blank, sample, letter, resume or report.",
+      "inputSchema": {
+        "properties": {
+          "template": {
+            "description": "blank|sample|letter|resume|report",
+            "type": "string"
+          }
+        },
+        "required": [],
+        "type": "object"
+      },
+      "name": "new_document",
+      "title": "New document"
+    },
+    {
+      "annotations": {
+        "openWorldHint": false,
+        "readOnlyHint": false,
+        "title": "Open"
+      },
+      "description": "Open a .docx, .doc, .odt, .rtf, .md, .tex, .html, .txt or .json file, or any other text file (.m3u, .log, .ini\u2026) as plain text.",
+      "inputSchema": {
+        "properties": {
+          "path": {
+            "description": "File path",
+            "type": "string"
+          }
+        },
+        "required": [
+          "path"
+        ],
+        "type": "object"
+      },
+      "name": "open_document",
+      "title": "Open"
+    },
+    {
+      "annotations": {
+        "openWorldHint": false,
+        "readOnlyHint": false,
+        "title": "Save"
+      },
+      "description": "Save (format from the extension: docx, pdf, odt, rtf, html, md, tex, txt, png).",
+      "inputSchema": {
+        "properties": {
+          "path": {
+            "description": "File path; omit to save in place",
+            "type": "string"
+          }
+        },
+        "required": [],
+        "type": "object"
+      },
+      "name": "save_document",
+      "title": "Save"
+    },
+    {
+      "annotations": {
+        "openWorldHint": false,
+        "readOnlyHint": false,
+        "title": "Type text"
+      },
+      "description": "Type at the caret (replacing the selection). Use \\n... for line breaks inside text; use execute text.newParagraph for new paragraphs, or `paragraphs: true` to split lines into paragraphs.",
+      "inputSchema": {
+        "properties": {
+          "paragraphs": {
+            "type": "boolean"
+          },
+          "text": {
+            "description": "Text",
+            "type": "string"
+          }
+        },
+        "required": [
+          "text"
+        ],
+        "type": "object"
+      },
+      "name": "type_text",
+      "title": "Type text"
+    },
+    {
+      "annotations": {
+        "openWorldHint": false,
+        "readOnlyHint": false,
+        "title": "Select text"
+      },
+      "description": "Select the n-th occurrence of some text.",
+      "inputSchema": {
+        "properties": {
+          "occurrence": {
+            "description": "1-based",
+            "type": "number"
+          },
+          "text": {
+            "description": "Text to find",
+            "type": "string"
+          }
+        },
+        "required": [
+          "text"
+        ],
+        "type": "object"
+      },
+      "name": "select_text",
+      "title": "Select text"
+    },
+    {
+      "annotations": {
+        "openWorldHint": false,
+        "readOnlyHint": true,
+        "title": "Document text"
+      },
+      "description": "Body text with tracked deletions omitted.",
+      "inputSchema": {
+        "properties": {},
+        "required": [],
+        "type": "object"
+      },
+      "name": "get_text",
+      "title": "Document text"
+    },
+    {
+      "annotations": {
+        "openWorldHint": false,
+        "readOnlyHint": true,
+        "title": "Inspect document"
+      },
+      "description": "Structure: blocks with text, styles, formatting runs, lists, tables, sections, parts, selection, pages.",
+      "inputSchema": {
+        "properties": {},
+        "required": [],
+        "type": "object"
+      },
+      "name": "inspect_document",
+      "title": "Inspect document"
+    },
+    {
+      "annotations": {
+        "openWorldHint": false,
+        "readOnlyHint": true,
+        "title": "Render page"
+      },
+      "description": "Render a page to PNG to look at the result.",
+      "inputSchema": {
+        "properties": {
+          "page": {
+            "description": "1-based page",
+            "type": "number"
+          },
+          "scale": {
+            "description": "Pixels per point (default 1)",
+            "type": "number"
+          }
+        },
+        "required": [],
+        "type": "object"
+      },
+      "name": "render_page",
+      "title": "Render page"
+    },
+    {
+      "annotations": {
+        "openWorldHint": false,
+        "readOnlyHint": true,
+        "title": "Feature parity"
+      },
+      "description": "WordCraft's command coverage of the word-processor feature catalog.",
+      "inputSchema": {
+        "properties": {},
+        "required": [],
+        "type": "object"
+      },
+      "name": "parity",
+      "title": "Feature parity"
+    },
+    {
+      "annotations": {
+        "openWorldHint": false,
+        "readOnlyHint": true,
+        "title": "Screenshot app"
+      },
+      "description": "Screenshot of the whole WordCraft window (desktop app only).",
+      "inputSchema": {
+        "properties": {},
+        "required": [],
+        "type": "object"
+      },
+      "name": "screenshot",
+      "title": "Screenshot app"
+    },
+    {
+      "annotations": {
+        "openWorldHint": false,
+        "readOnlyHint": false,
+        "title": "Click"
+      },
+      "description": "Click at window coordinates (desktop app only).",
+      "inputSchema": {
+        "properties": {
+          "cmd": {
+            "type": "boolean"
+          },
+          "count": {
+            "description": "1-3 clicks",
+            "type": "number"
+          },
+          "shift": {
+            "type": "boolean"
+          },
+          "x": {
+            "description": "x",
+            "type": "number"
+          },
+          "y": {
+            "description": "y",
+            "type": "number"
+          }
+        },
+        "required": [
+          "x",
+          "y"
+        ],
+        "type": "object"
+      },
+      "name": "click",
+      "title": "Click"
+    },
+    {
+      "annotations": {
+        "openWorldHint": false,
+        "readOnlyHint": false,
+        "title": "Press key"
+      },
+      "description": "Press a key with modifiers (desktop app only), e.g. {key:\"B\", cmd:true}.",
+      "inputSchema": {
+        "properties": {
+          "alt": {
+            "type": "boolean"
+          },
+          "cmd": {
+            "type": "boolean"
+          },
+          "key": {
+            "description": "Key name",
+            "type": "string"
+          },
+          "shift": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "key"
+        ],
+        "type": "object"
+      },
+      "name": "key",
+      "title": "Press key"
+    },
+    {
+      "annotations": {
+        "openWorldHint": false,
+        "readOnlyHint": true,
+        "title": "Inspect UI"
+      },
+      "description": "UI state: tab, panes, dialog, page rectangles on screen, caret (desktop app only).",
+      "inputSchema": {
+        "properties": {},
+        "required": [],
+        "type": "object"
+      },
+      "name": "ui_inspect",
+      "title": "Inspect UI"
+    }
+  ]
+}

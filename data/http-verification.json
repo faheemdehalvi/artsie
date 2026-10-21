@@ -1,0 +1,25 @@
+[
+  {
+    "action": "files",
+    "status": 403,
+    "expected": 403
+  },
+  {
+    "action": "files",
+    "status": 403,
+    "expected": 403
+  },
+  {
+    "action": "files",
+    "status": 400,
+    "expected": 400
+  },
+  {
+    "action": "files",
+    "status": 200,
+    "expected": 200
+  },
+  {
+    "shared_ui_mcp_live_session": true
+  }
+]

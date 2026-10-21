@@ -1,0 +1,781 @@
+{
+  "tools": [
+    {
+      "annotations": {
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false,
+        "readOnlyHint": true,
+        "title": "List commands"
+      },
+      "description": "Every command (engine + UI when connected) with id, label, menu, shortcut, parameter doc and whether it is enabled now. Each id is also callable as tool `cmd_<id with . replaced by _>` or via command_run.",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "enabled_only": {
+            "description": "Only commands that are enabled now",
+            "type": "boolean"
+          },
+          "filter": {
+            "description": "Only commands whose id or label contains this text (case-insensitive)",
+            "type": "string"
+          }
+        },
+        "required": [],
+        "type": "object"
+      },
+      "name": "command_list",
+      "title": "List commands"
+    },
+    {
+      "annotations": {
+        "destructiveHint": true,
+        "idempotentHint": false,
+        "openWorldHint": false,
+        "readOnlyHint": false,
+        "title": "Run command"
+      },
+      "description": "Run any LightCraft command by id with JSON params (see command_list for ids and parameter docs), e.g. {id: \"photo.rate\", params: {rating: 4}}.",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "description": "Command id",
+            "type": "string"
+          },
+          "params": {
+            "additionalProperties": true,
+            "description": "Command parameters",
+            "type": "object"
+          }
+        },
+        "required": [
+          "id"
+        ],
+        "type": "object"
+      },
+      "name": "command_run",
+      "title": "Run command"
+    },
+    {
+      "annotations": {
+        "destructiveHint": true,
+        "idempotentHint": false,
+        "openWorldHint": false,
+        "readOnlyHint": false,
+        "title": "Run commands"
+      },
+      "description": "Run several commands in order: {steps: [{id, params?}], stop_on_error?: true}. Returns {completed, failed, results: [{ok, result | error}]}.",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "steps": {
+            "items": {
+              "additionalProperties": false,
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "params": {
+                  "additionalProperties": true,
+                  "type": "object"
+                }
+              },
+              "required": [
+                "id"
+              ],
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "stop_on_error": {
+            "description": "Stop at the first failing step (default true)",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "steps"
+        ],
+        "type": "object"
+      },
+      "name": "command_batch",
+      "title": "Run commands"
+    },
+    {
+      "annotations": {
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false,
+        "readOnlyHint": true,
+        "title": "Inspect library"
+      },
+      "description": "The library as JSON: current source, filter, sort, selection, active photo and undo/redo labels (library.state) plus counts (catalog.stats).",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {},
+        "required": [],
+        "type": "object"
+      },
+      "name": "doc_inspect",
+      "title": "Inspect library"
+    },
+    {
+      "annotations": {
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false,
+        "readOnlyHint": true,
+        "title": "Render preview"
+      },
+      "description": "Render a photo with its current develop settings (cropped) and return it as an image (`max_side` is the long edge; does not change selection or save a file).",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "format": {
+            "description": "Image encoding (default png; jpeg is smaller)",
+            "enum": [
+              "png",
+              "jpeg"
+            ],
+            "type": "string"
+          },
+          "id": {
+            "description": "Photo id (default: the active photo); selection is unchanged",
+            "type": "integer"
+          },
+          "max_side": {
+            "description": "Long edge in pixels (default 1024, max 4096)",
+            "type": "integer"
+          }
+        },
+        "required": [],
+        "type": "object"
+      },
+      "name": "render_preview",
+      "title": "Render preview"
+    },
+    {
+      "annotations": {
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false,
+        "readOnlyHint": true,
+        "title": "List commands"
+      },
+      "description": "Every command (engine + UI when connected) with id, label, menu, shortcut, parameter doc and whether it is enabled now. Each id is also callable as tool `cmd_<id with . replaced by _>` or via run_command.",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "filter": {
+            "description": "Only commands whose id or label contains this text (case-insensitive)",
+            "type": "string"
+          }
+        },
+        "required": [],
+        "type": "object"
+      },
+      "name": "list_commands",
+      "title": "List commands"
+    },
+    {
+      "annotations": {
+        "destructiveHint": true,
+        "idempotentHint": false,
+        "openWorldHint": false,
+        "readOnlyHint": false,
+        "title": "Run command"
+      },
+      "description": "Run any LightCraft command by id with JSON params (see list_commands for ids and parameter docs), e.g. {command: \"photo.rate\", params: {rating: 4}}.",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "command": {
+            "type": "string"
+          },
+          "params": {
+            "additionalProperties": true,
+            "description": "Command parameters",
+            "type": "object"
+          }
+        },
+        "required": [
+          "command"
+        ],
+        "type": "object"
+      },
+      "name": "run_command",
+      "title": "Run command"
+    },
+    {
+      "annotations": {
+        "destructiveHint": true,
+        "idempotentHint": false,
+        "openWorldHint": false,
+        "readOnlyHint": false,
+        "title": "Import photos"
+      },
+      "description": "Add image/raw files to the library. Folders are scanned recursively for photos; relative paths resolve against the server's working directory. The first imported photo becomes active. Returns the new photo ids.",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "album": {
+            "description": "Also add to this album id",
+            "type": "integer"
+          },
+          "destination": {
+            "description": "Copy or move: destination folder",
+            "type": "string"
+          },
+          "mode": {
+            "description": "add (default) = reference the files in place; copy = copy them into `destination` (default: the library's Originals/); move = as copy, then each original and its XMP sidecars are removed from the source once the copy is verified and catalogued (duplicates and failures keep their sources; `kept` lists sources left in place and why; undo leaves the moved files at the destination)",
+            "enum": [
+              "add",
+              "copy",
+              "move"
+            ],
+            "type": "string"
+          },
+          "onDeleted": {
+            "description": "A file that is in Recently Deleted: restore (default) = bring the photo back with its edits (`restored` lists it; relinked to the file when its own is gone); skip = leave it there (the duplicate is reported with existingDeleted); fresh = delete the trashed record and import the file as a new photo",
+            "enum": [
+              "restore",
+              "skip",
+              "fresh"
+            ],
+            "type": "string"
+          },
+          "organize": {
+            "description": "Copy or move: folders inside the destination \u2014 date (YYYY/YYYY-MM-DD, default), month (YYYY/YYYY-MM), flat, or a folder template such as {date:%Y}/{date:%Y%m%d} (\u2192 2026/20260114; the template's / make the levels, tokens as for rename; relative, no ..). Dated by capture time, else the import time",
+            "type": "string"
+          },
+          "paths": {
+            "description": "Files and/or folders",
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "rename": {
+            "description": "Copy or move: file-name template, e.g. {date:%Y%m%d_%H%M%S}_{seq:3} (run_command photo.renameTokens lists the tags); the extension is kept",
+            "type": "string"
+          }
+        },
+        "required": [
+          "paths"
+        ],
+        "type": "object"
+      },
+      "name": "import",
+      "title": "Import photos"
+    },
+    {
+      "annotations": {
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false,
+        "readOnlyHint": true,
+        "title": "Query photos"
+      },
+      "description": "List photos (id, file name, size, rating, flag, edited\u2026). Without filter/sort: the current library view.",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "filter": {
+            "additionalProperties": true,
+            "description": "Catalog Filter JSON (e.g. {\"minRating\": 3})",
+            "type": "object"
+          },
+          "limit": {
+            "description": "Default 200",
+            "type": "integer"
+          },
+          "offset": {
+            "type": "integer"
+          },
+          "sort": {
+            "additionalProperties": true,
+            "type": "object"
+          }
+        },
+        "required": [],
+        "type": "object"
+      },
+      "name": "query_photos",
+      "title": "Query photos"
+    },
+    {
+      "annotations": {
+        "destructiveHint": true,
+        "idempotentHint": false,
+        "openWorldHint": false,
+        "readOnlyHint": false,
+        "title": "Select photos"
+      },
+      "description": "Set the selection; the active photo (the one develop tools edit) is `active` or the first id.",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "active": {
+            "type": "integer"
+          },
+          "ids": {
+            "description": "Photo ids",
+            "items": {
+              "type": "integer"
+            },
+            "type": "array"
+          },
+          "mode": {
+            "enum": [
+              "replace",
+              "add",
+              "toggle",
+              "range"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "ids"
+        ],
+        "type": "object"
+      },
+      "name": "select_photos",
+      "title": "Select photos"
+    },
+    {
+      "annotations": {
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false,
+        "readOnlyHint": true,
+        "title": "List develop controls"
+      },
+      "description": "Every develop slider (id like `light.exposure`, label, section, min, max, default, current value) for the active photo.",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "section": {
+            "description": "Only this section (e.g. light, color, effects, detail)",
+            "type": "string"
+          }
+        },
+        "required": [],
+        "type": "object"
+      },
+      "name": "list_controls",
+      "title": "List develop controls"
+    },
+    {
+      "annotations": {
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false,
+        "readOnlyHint": true,
+        "title": "Get develop settings"
+      },
+      "description": "The full develop settings JSON of a photo (white balance, light, color, curves, mixer, grading, effects, crop, masks, spots\u2026).",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "description": "Photo id (default: the active photo). Reads without changing the selection.",
+            "type": "integer"
+          }
+        },
+        "required": [],
+        "type": "object"
+      },
+      "name": "get_develop",
+      "title": "Get develop settings"
+    },
+    {
+      "annotations": {
+        "destructiveHint": true,
+        "idempotentHint": false,
+        "openWorldHint": false,
+        "readOnlyHint": false,
+        "title": "Set develop settings"
+      },
+      "description": "Edit a photo (one undo step each for values and settings). `values` sets sliders by control id (see list_controls), e.g. {\"light.exposure\": 0.7, \"light.contrast\": 20}. `settings` deep-merges a partial develop-settings JSON (as returned by get_develop).",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "description": "Photo id (default: the active photo). Makes that photo active first.",
+            "type": "integer"
+          },
+          "label": {
+            "description": "History label for `settings`",
+            "type": "string"
+          },
+          "settings": {
+            "additionalProperties": true,
+            "description": "Partial DevelopSettings JSON to merge",
+            "type": "object"
+          },
+          "values": {
+            "additionalProperties": {
+              "type": "number"
+            },
+            "description": "controlId \u2192 value",
+            "type": "object"
+          }
+        },
+        "required": [],
+        "type": "object"
+      },
+      "name": "set_develop",
+      "title": "Set develop settings"
+    },
+    {
+      "annotations": {
+        "destructiveHint": true,
+        "idempotentHint": false,
+        "openWorldHint": false,
+        "readOnlyHint": false,
+        "title": "Apply preset"
+      },
+      "description": "Apply a develop preset (ids from cmd_presets_list) to the selection or `ids`, at `amount` percent (0..200, default 100).",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "amount": {
+            "type": "number"
+          },
+          "ids": {
+            "description": "Photo ids (default: selection)",
+            "items": {
+              "type": "integer"
+            },
+            "type": "array"
+          },
+          "preset": {
+            "description": "Preset id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "preset"
+        ],
+        "type": "object"
+      },
+      "name": "apply_preset",
+      "title": "Apply preset"
+    },
+    {
+      "annotations": {
+        "destructiveHint": true,
+        "idempotentHint": false,
+        "openWorldHint": false,
+        "readOnlyHint": false,
+        "title": "Crop / straighten"
+      },
+      "description": "Set the crop of the active photo: `rect` [x0,y0,x1,y1] in normalized coordinates (0..1, origin top-left) of the straightened frame, `angle` in degrees. `reset: true` clears it. Give at least one of them.",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "angle": {
+            "type": "number"
+          },
+          "id": {
+            "description": "Photo id (default: the active photo). Makes that photo active first.",
+            "type": "integer"
+          },
+          "rect": {
+            "items": {
+              "type": "number"
+            },
+            "maxItems": 4,
+            "minItems": 4,
+            "type": "array"
+          },
+          "reset": {
+            "type": "boolean"
+          }
+        },
+        "required": [],
+        "type": "object"
+      },
+      "name": "crop",
+      "title": "Crop / straighten"
+    },
+    {
+      "annotations": {
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false,
+        "readOnlyHint": false,
+        "title": "Render photo"
+      },
+      "description": "Render a photo with its current develop settings (cropped) and return it as an image so you can look at the result.",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "format": {
+            "description": "Image encoding (default png; jpeg is smaller)",
+            "enum": [
+              "png",
+              "jpeg"
+            ],
+            "type": "string"
+          },
+          "id": {
+            "description": "Photo id (default: the active photo); selection is unchanged",
+            "type": "integer"
+          },
+          "path": {
+            "description": "Also save the rendered file here",
+            "type": "string"
+          },
+          "size": {
+            "description": "Long edge in pixels (default 1024, max 4096)",
+            "type": "integer"
+          }
+        },
+        "required": [],
+        "type": "object"
+      },
+      "name": "render_photo",
+      "title": "Render photo"
+    },
+    {
+      "annotations": {
+        "destructiveHint": false,
+        "idempotentHint": false,
+        "openWorldHint": false,
+        "readOnlyHint": false,
+        "title": "Export photo"
+      },
+      "description": "Render and write photos. Give `path` (one photo; format from the extension unless `format` is set) or `dir` (batch, file names from `naming`).",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "addToPhotos": {
+            "description": "macOS: after writing the files, add them to Apple Photos (Apple Events to Photos' import; the first time, macOS asks the user to allow LightCraft to control Photos). The outcome is `applePhotos` in the result, the import job: {job, running, requested, album, imported?, ids?, warning?, error?}; headless waits for Photos, the desktop app returns the running job (outcome: command export.photosImports {job}). The files are written either way. An error before exporting on other platforms, or while another import is reserved or running",
+            "type": "boolean"
+          },
+          "background": {
+            "description": "Desktop background export (headless exports remain blocking)",
+            "type": "boolean"
+          },
+          "bitDepth": {
+            "description": "Bits per channel: PNG 8|16 (default 8), TIFF 8|16|32 (default 16; 32 = linear float with a linear profile), PSD 8|16 (default 16), AVIF 8|10, JPEG XL 8|16; JPEG/WebP are 8-bit",
+            "enum": [
+              8,
+              10,
+              16,
+              32
+            ],
+            "type": "integer"
+          },
+          "colorSpace": {
+            "description": "Output colour space (default sRGB; AVIF is always sRGB; lossy JPEG XL writes adobeRgb/proPhoto as rec2020). adobeRgb = Adobe RGB (1998) compatible; the embedded ICC profile is generated from the published primaries",
+            "enum": [
+              "srgb",
+              "displayP3",
+              "adobeRgb",
+              "proPhoto",
+              "rec2020"
+            ],
+            "type": "string"
+          },
+          "conflict": {
+            "enum": [
+              "unique",
+              "overwrite",
+              "skip"
+            ],
+            "type": "string"
+          },
+          "destinationMode": {
+            "description": "specificFolder (default) = everything into `dir`; sameAsOriginal = each photo into the folder of its original (+ `subfolder`); a photo with no folder on disk (demo, browser) or whose folder is gone gets an error",
+            "enum": [
+              "specificFolder",
+              "sameAsOriginal"
+            ],
+            "type": "string"
+          },
+          "dir": {
+            "type": "string"
+          },
+          "dngCompression": {
+            "enum": [
+              "lossless",
+              "deflate",
+              "uncompressed",
+              "lossy"
+            ],
+            "type": "string"
+          },
+          "dontEnlarge": {
+            "description": "Never upscale past the photo's own size (default true)",
+            "type": "boolean"
+          },
+          "format": {
+            "description": "psd = a flat PSD (no layers); rendereddng = Render to DNG, a linear 16-bit float DNG of the rendered photo with the edit baked in; original = the file as is + an XMP sidecar with the edits; dng = raw photos as DNG with the edits embedded",
+            "enum": [
+              "jpeg",
+              "png",
+              "tiff",
+              "psd",
+              "webp",
+              "avif",
+              "jxl",
+              "original",
+              "dng",
+              "rendereddng"
+            ],
+            "type": "string"
+          },
+          "hdr": {
+            "description": "HDR output for photos edited in HDR (develop.hdr): JPEG as an ISO 21496-1 gain map JPEG, AVIF as 10-bit, PNG and JPEG XL as 16-bit Rec. 2020 PQ, 32-bit TIFF with highlights above 1; other formats and SDR edits export as usual",
+            "type": "boolean"
+          },
+          "hdrTransfer": {
+            "description": "Transfer curve of HDR AVIF output (default pq): pq = SMPTE ST 2084, hlg = ITU-R BT.2100 hybrid log-gamma",
+            "enum": [
+              "pq",
+              "hlg"
+            ],
+            "type": "string"
+          },
+          "height": {
+            "description": "Output height in px",
+            "type": "integer"
+          },
+          "id": {
+            "description": "Photo id (default: the active photo). Makes that photo active first.",
+            "type": "integer"
+          },
+          "ids": {
+            "description": "Photos to export (default: the given/active photo)",
+            "items": {
+              "type": "integer"
+            },
+            "type": "array"
+          },
+          "jxlEffort": {
+            "description": "JPEG XL encoder effort: normal (default) makes files about a quarter smaller than fast, in about twice the time",
+            "enum": [
+              "fast",
+              "normal"
+            ],
+            "type": "string"
+          },
+          "jxlLossless": {
+            "description": "JPEG XL: mathematically lossless (quality unused); default false",
+            "type": "boolean"
+          },
+          "jxlProgressive": {
+            "description": "JPEG XL: progressive file, a coarse image first (default false)",
+            "type": "boolean"
+          },
+          "limitKb": {
+            "description": "JPEG: largest quality that fits this many KB",
+            "type": "integer"
+          },
+          "longEdge": {
+            "description": "Output long edge in px. When no size param is given: 3000; 0 = full size (cropped, native resolution)",
+            "type": "integer"
+          },
+          "megapixels": {
+            "description": "Output size in megapixels",
+            "type": "number"
+          },
+          "metadata": {
+            "enum": [
+              "all",
+              "allExceptCamera",
+              "copyright",
+              "none"
+            ],
+            "type": "string"
+          },
+          "naming": {
+            "description": "File-name template, e.g. {name}-{seq} or {date:%Y-%m-%d}_{title}_{seq:2} (tokens: {name} {num} {seq} {seq:N} {date} {date:%\u2026} {folder} {camera} {lens} {iso} {rating} {title} {creator} {ext})",
+            "type": "string"
+          },
+          "path": {
+            "type": "string"
+          },
+          "percent": {
+            "description": "Output size as a percentage of full size",
+            "type": "number"
+          },
+          "photosAlbum": {
+            "description": "With addToPhotos: the album to add them to, a top-level Photos album of exactly this name, made when missing (several of that name: nothing is added); default none",
+            "type": "string"
+          },
+          "ppi": {
+            "description": "Print resolution written into the file (default 240)",
+            "type": "integer"
+          },
+          "preset": {
+            "description": "Export preset id or name",
+            "type": "string"
+          },
+          "quality": {
+            "description": "JPEG/AVIF/lossy JPEG XL quality 1..100",
+            "type": "integer"
+          },
+          "removeLocation": {
+            "type": "boolean"
+          },
+          "resize": {
+            "description": "Full Resize options; alternatively use the size helpers below",
+            "type": "object"
+          },
+          "sharpen": {
+            "enum": [
+              "none",
+              "screen",
+              "matte",
+              "glossy"
+            ],
+            "type": "string"
+          },
+          "sharpenAmount": {
+            "enum": [
+              "low",
+              "standard",
+              "high"
+            ],
+            "type": "string"
+          },
+          "shortEdge": {
+            "description": "Output short edge in px",
+            "type": "integer"
+          },
+          "startNumber": {
+            "description": "First {seq} value (default 1)",
+            "type": "integer"
+          },
+          "subfolder": {
+            "description": "Created inside the destination folder",
+            "type": "string"
+          },
+          "tiffCompression": {
+            "enum": [
+              "none",
+              "lzw",
+              "zip"
+            ],
+            "type": "string"
+          },
+          "watermark": {
+            "description": "Text, or {text, vertical (boolean; defaults to false: upright columns right to left), size (text height as a fraction of the short edge, 0.005..0.5; default 0.035), opacity (0..1; default 0.7), anchor (topLeft|top|topRight|left|center|right|bottomLeft|bottom|bottomRight), insetX (margin from the left or right edge as a fraction of the short edge, 0..0.4; default 0.025), insetY (margin from the top or bottom edge, same units), inset (sets both), rotation (degrees clockwise: 0|90|180|270; default 0; the watermark is sized before it is turned), color [r,g,b] (sRGB 0..255), shadow (boolean), image (path of a graphic drawn instead of the text), imageWidth (fraction of the photo's width, 0.01..1; default 0.2)}. Unknown keys and out-of-range sizes are errors"
+          },
+          "width": {
+            "description": "Output width in px (with height: fit inside width \u00d7 height, either orientation)",
+            "type": "integer"
+          }
+        },
+        "required": [],
+        "type": "object"
+      },
+      "name": "export",
+      "title": "Export photo"
+    }
+  ]
+}
