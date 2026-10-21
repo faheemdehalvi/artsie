@@ -74,12 +74,15 @@ def prepare(app):
         if path.suffix == '.zip':
             dest = ROOT / 'tools' / slug
             dest.mkdir(parents=True, exist_ok=True)
-            with zipfile.ZipFile(path) as archive:
-                for member in archive.infolist():
-                    target = (dest / member.filename).resolve()
-                    if not target.is_relative_to(dest.resolve()):
-                        raise ValueError('Unsafe archive path')
-                archive.extractall(dest)
+            # Re-extracting over an installed CLI breaks any engine the hub is running
+            # from it, so unpack only when this release's CLI isn't there yet.
+            if not (dest / path.stem / (slug + '-cli')).exists():
+                with zipfile.ZipFile(path) as archive:
+                    for member in archive.infolist():
+                        target = (dest / member.filename).resolve()
+                        if not target.is_relative_to(dest.resolve()):
+                            raise ValueError('Unsafe archive path')
+                    archive.extractall(dest)
             for binary in dest.rglob(slug + '-cli'):
                 binary.chmod(0o755)
                 link = ROOT / 'bin' / (slug + '-cli')

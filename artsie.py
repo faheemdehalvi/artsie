@@ -146,6 +146,23 @@ def session(slug, mode='headless'):
             SESSIONS[key] = NativeSession(slug, mode)
         return SESSIONS[key]
 
+def native_request(slug, mode, method, params=None, retry=False):
+    """Send one request; a session whose pipe broke is dropped so the next call starts fresh.
+    Only idempotent requests (retry=True) are re-sent, since a call's outcome is unknown."""
+    try:
+        return session(slug, mode).request(method, params)
+    except (BrokenPipeError, RuntimeError) as error:
+        if isinstance(error, RuntimeError) and 'Native MCP exited' not in str(error):
+            raise
+        key = slug if mode == 'headless' else slug + ':live'
+        with SESSION_LOCK:
+            broken = SESSIONS.pop(key, None)
+        if broken:
+            broken.close()
+        if retry:
+            return session(slug, mode).request(method, params)
+        raise
+
 def start_live(slug):
     if slug not in LIVE_FLAGS:
         raise ValueError('The hub currently provides live window control for PhotoCraft and FilmCraft. All 13 apps support headless MCP.')
@@ -260,12 +277,12 @@ def dispatch(action, args):
         result = subprocess.run([str(ROOT / 'bin' / (args['app'] + '-cli')), '--help'], capture_output=True, text=True, timeout=15)
         return {'text': result.stdout + result.stderr, 'exit_code': result.returncode}
     if action == 'tools':
-        return session(args['app'],args.get('mode','headless')).request('tools/list')
+        return native_request(args['app'],args.get('mode','headless'),'tools/list',retry=True)
     if action == 'start_live':
         return start_live(args['app'])
     if action == 'call':
         try:
-            result = session(args['app'],args.get('mode','headless')).request('tools/call', {'name': args['tool'], 'arguments': args.get('arguments', {})})
+            result = native_request(args['app'],args.get('mode','headless'),'tools/call', {'name': args['tool'], 'arguments': args.get('arguments', {})})
             audit(args['tool'], args['app'], not result.get('isError', False))
             return result
         except Exception:

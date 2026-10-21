@@ -10,7 +10,9 @@ ROOT = Path(__file__).resolve().parents[1]
 node = shutil.which("node")
 if not node:
     raise SystemExit("Install Node 24.10 or newer before installing the CLI.")
-node = str(Path(node).resolve())
+# Keep the PATH entry (e.g. /opt/homebrew/bin/node) rather than the versioned
+# Cellar path it links to, so the launcher survives `brew upgrade node`.
+node = str(Path(node).absolute())
 if not (ROOT / "cli/node_modules/incur").exists():
     subprocess.run(["npm", "ci", "--ignore-scripts", "--no-audit", "--no-fund"], cwd=ROOT / "cli", check=True)
 launcher = ROOT / "bin/artsie"

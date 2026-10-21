@@ -51,6 +51,8 @@ These folders are not in the repository. Setup rebuilds them:
 | `workspace/Inbox`, `Projects`, `Exports` | empty | `install_suite.py` creates them. Your own files live here and never go into git. |
 | `logs/` and `data/photocraft-control-token` | | ARTsie creates them on first run. The token is a per-machine secret, so it is never committed. |
 
+If step 4 fails with `Native MCP exited` or `Broken pipe`, an older ARTsie hub is still running from before the install. Stop it with `kill $(lsof -tiTCP:8743 -sTCP:LISTEN)` and run `./setup.sh` again. The next CLI call starts a fresh hub.
+
 To move to newer ArtCraft releases, delete `downloads/<app>/release.json` and run `install_suite.py` again.
 
 ## What is here
